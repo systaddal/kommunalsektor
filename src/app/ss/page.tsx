@@ -70,9 +70,6 @@ function SectionOm() {
             Difor har me lyst at vårt vesle bidrag skal bli så stort som det kan
             bli.
           </p>
-          <p className="text-[#111] font-medium text-base">
-            Me trur faktisk på dette her.
-          </p>
         </div>
       </div>
     </section>
