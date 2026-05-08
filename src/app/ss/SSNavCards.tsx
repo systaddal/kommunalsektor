@@ -2,25 +2,26 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSSHref } from "./useSSHref";
 
 const allPages = [
   {
-    href: "/ss",
+    path: "/ss",
     title: "Heim",
     desc: "Kvar kjem me frå og kvifor er me her",
   },
   {
-    href: "/ss/tilnaerming",
+    path: "/ss/tilnaerming",
     title: "Korleis",
     desc: "Forstå folk og forstå system",
   },
   {
-    href: "/ss/arbeid",
+    path: "/ss/arbeid",
     title: "Kva",
     desc: "To parallelle spor: forankring og handling",
   },
   {
-    href: "/ss/folk",
+    path: "/ss/folk",
     title: "Folka",
     desc: "Å vere, heller enn å framstå",
   },
@@ -28,15 +29,17 @@ const allPages = [
 
 export default function SSNavCards() {
   const pathname = usePathname();
-  const cards = allPages.filter((p) => p.href !== pathname);
+  const ssHref = useSSHref();
+  const normalizedPathname = pathname.startsWith("/ss") ? pathname : `/ss${pathname === "/" ? "" : pathname}`;
+  const cards = allPages.filter((p) => p.path !== normalizedPathname);
 
   return (
     <section className="px-6 sm:px-10 pt-10 pb-4">
       <div className="max-w-3xl mx-auto grid sm:grid-cols-3 gap-4">
         {cards.map((card) => (
           <Link
-            key={card.href}
-            href={card.href}
+            key={card.path}
+            href={ssHref(card.path)}
             className="flex flex-col justify-between rounded-2xl border border-[#eee] bg-[#fafafa] p-6 min-h-[140px] group hover:border-[#ddd] hover:shadow-sm transition-all"
           >
             <h2 className="text-[#111] font-medium text-lg tracking-tight">

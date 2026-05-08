@@ -3,21 +3,24 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
+import { useSSHref } from "./useSSHref";
 
 const links = [
-  { href: "/ss", label: "Heim" },
-  { href: "/ss/tilnaerming", label: "Korleis" },
-  { href: "/ss/arbeid", label: "Kva" },
-  { href: "/ss/folk", label: "Folka" },
+  { path: "/ss", label: "Heim" },
+  { path: "/ss/tilnaerming", label: "Korleis" },
+  { path: "/ss/arbeid", label: "Kva" },
+  { path: "/ss/folk", label: "Folka" },
 ];
 
 export default function SSNav() {
-  const pathname = usePathname();
+  const rawPathname = usePathname();
+  const ssHref = useSSHref();
+  const pathname = rawPathname.startsWith("/ss") ? rawPathname : `/ss${rawPathname === "/" ? "" : rawPathname}`;
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
     setOpen(false);
-  }, [pathname]);
+  }, [rawPathname]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -29,19 +32,19 @@ export default function SSNav() {
       <header className="px-6 sm:px-10 py-6 relative z-50">
         <div className="max-w-3xl mx-auto flex items-center justify-between">
           <Link
-            href="/ss"
+            href={ssHref("/ss")}
             className="text-sm font-medium tracking-tight text-[#111] hover:text-[#444] transition-colors"
           >
             Selseng & Systaddal
           </Link>
 
           <nav className="hidden sm:flex items-center gap-1">
-            {links.filter((l) => l.href !== "/ss").map((link) => (
+            {links.filter((l) => l.path !== "/ss").map((link) => (
               <Link
-                key={link.href}
-                href={link.href}
+                key={link.path}
+                href={ssHref(link.path)}
                 className={`text-sm px-3.5 py-1.5 rounded-full transition-colors cursor-pointer ${
-                  pathname === link.href
+                  pathname === link.path
                     ? "bg-[#f0f0f0] text-[#111]"
                     : "text-[#666] hover:bg-[#f5f5f5] hover:text-[#111]"
                 }`}
@@ -73,10 +76,10 @@ export default function SSNav() {
           <nav className="flex flex-col gap-2">
             {links.map((link) => (
               <Link
-                key={link.href}
-                href={link.href}
+                key={link.path}
+                href={ssHref(link.path)}
                 className={`text-2xl font-medium tracking-tight py-2 transition-colors ${
-                  pathname === link.href ? "text-[#111]" : "text-[#999] hover:text-[#111]"
+                  pathname === link.path ? "text-[#111]" : "text-[#999] hover:text-[#111]"
                 }`}
               >
                 {link.label}
