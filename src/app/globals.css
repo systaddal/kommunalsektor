@@ -99,3 +99,17 @@ body {
   font-weight: 500;
   color: #2D4233;
 }
+
+/* Selseng & Systaddal portable text */
+.prose-ss p {
+  margin-bottom: 1.75rem;
+}
+
+.prose-ss p:last-child {
+  margin-bottom: 0;
+}
+
+.prose-ss strong {
+  font-weight: 500;
+  color: #111;
+}
