@@ -11,16 +11,6 @@ const allPages = [
     desc: "Kvar kjem me frå og kvifor er me her",
   },
   {
-    path: "/ss/tilnaerming",
-    title: "Korleis",
-    desc: "Forstå folk og forstå system",
-  },
-  {
-    path: "/ss/arbeid",
-    title: "Kva",
-    desc: "To parallelle spor: forankring og handling",
-  },
-  {
     path: "/ss/folk",
     title: "Folka",
     desc: "Å vere, heller enn å framstå",

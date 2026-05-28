@@ -7,8 +7,6 @@ import { useSSHref } from "./useSSHref";
 
 const links = [
   { path: "/ss", label: "Heim" },
-  { path: "/ss/tilnaerming", label: "Korleis" },
-  { path: "/ss/arbeid", label: "Kva" },
   { path: "/ss/folk", label: "Folka" },
 ];
 
