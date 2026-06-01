@@ -42,13 +42,14 @@ function ssStructure(S: StructureBuilder) {
     ]);
 }
 
-const shared = { projectId, dataset, basePath: "/studio" };
+const shared = { projectId, dataset };
 
 export default defineConfig([
   {
     ...shared,
     name: "kommunalsektor",
     title: "KommunalSektor",
+    basePath: "/studio/kommunalsektor",
     plugins: [structureTool({ structure: kommunalSektorStructure }), visionTool()],
     schema: { types: schemaTypes },
   },
@@ -56,6 +57,7 @@ export default defineConfig([
     ...shared,
     name: "selsengsystaddal",
     title: "Selseng & Systaddal",
+    basePath: "/studio/selsengsystaddal",
     plugins: [structureTool({ structure: ssStructure }), visionTool()],
     schema: { types: schemaTypes },
   },
