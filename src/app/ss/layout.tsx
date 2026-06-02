@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { TikTok_Sans } from "next/font/google";
 import SSNav from "./SSNav";
 import SSPageEnd from "./SSPageEnd";
+import SSConsent from "./SSConsent";
 
 const tiktokSans = TikTok_Sans({
   variable: "--font-tiktok",
@@ -48,6 +49,8 @@ export default function SSLayout({
       <SSNav />
       {children}
       <SSPageEnd />
+      {/* HubSpot tracking bak samtykke — kun Selseng & Systaddal */}
+      <SSConsent />
     </div>
   );
 }
