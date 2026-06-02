@@ -1,4 +1,5 @@
 import { defineField, defineType } from "sanity";
+import { ssRichBlock } from "./ssRichBlock";
 
 export default defineType({
   name: "ssHomepage",
@@ -15,7 +16,7 @@ export default defineType({
       name: "body",
       title: "Brødtekst",
       type: "array",
-      of: [{ type: "block" }],
+      of: [ssRichBlock],
     }),
   ],
   preview: {

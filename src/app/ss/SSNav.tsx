@@ -27,12 +27,22 @@ export default function SSNav() {
 
   return (
     <>
-      <header className="px-6 sm:px-10 py-6 relative z-50">
+      <header className="sticky top-0 z-50 px-6 sm:px-10 py-6 bg-white/85 backdrop-blur-md">
         <div className="max-w-3xl mx-auto flex items-center justify-between">
           <Link
             href={ssHref("/ss")}
-            className="text-sm font-medium tracking-tight text-[#111] hover:text-[#444] transition-colors"
+            className="flex items-center gap-2.5 text-sm font-medium tracking-tight text-[#111] hover:text-[#444] transition-colors"
           >
+            <svg
+              viewBox="0 0 48 34"
+              fill="currentColor"
+              aria-hidden
+              className="h-[18px] w-auto shrink-0"
+            >
+              <rect x="0" y="24" width="22" height="9" rx="2.5" />
+              <rect x="13" y="12.5" width="22" height="9" rx="2.5" />
+              <rect x="26" y="1" width="22" height="9" rx="2.5" />
+            </svg>
             Selseng & Systaddal
           </Link>
 
@@ -50,12 +60,12 @@ export default function SSNav() {
                 {link.label}
               </Link>
             ))}
-            <a
-              href="mailto:hei@selsengsystaddal.no"
+            <Link
+              href={ssHref("/ss/kontakt")}
               className="text-sm text-white bg-[#111] rounded-full px-5 py-1.5 ml-3 hover:bg-[#333] transition-colors cursor-pointer"
             >
               Kontakt oss
-            </a>
+            </Link>
           </nav>
 
           <button
@@ -83,12 +93,12 @@ export default function SSNav() {
                 {link.label}
               </Link>
             ))}
-            <a
-              href="mailto:hei@selsengsystaddal.no"
+            <Link
+              href={ssHref("/ss/kontakt")}
               className="inline-flex items-center gap-2 text-sm text-white bg-[#111] rounded-full px-5 py-2.5 mt-6 w-fit hover:bg-[#333] transition-colors"
             >
               Kontakt oss <span>&rarr;</span>
-            </a>
+            </Link>
           </nav>
         </div>
       )}

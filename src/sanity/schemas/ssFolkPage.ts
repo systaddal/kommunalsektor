@@ -1,4 +1,5 @@
 import { defineField, defineType, defineArrayMember } from "sanity";
+import { ssRichBlock } from "./ssRichBlock";
 
 export default defineType({
   name: "ssFolkPage",
@@ -15,7 +16,7 @@ export default defineType({
       name: "intro",
       title: "Intro",
       type: "array",
-      of: [{ type: "block" }],
+      of: [ssRichBlock],
     }),
     defineField({
       name: "people",
@@ -27,13 +28,19 @@ export default defineType({
           fields: [
             defineField({ name: "name", title: "Namn", type: "string" }),
             defineField({
+              name: "image",
+              title: "Bilde",
+              type: "image",
+              options: { hotspot: true },
+            }),
+            defineField({
               name: "bio",
               title: "Bio",
               type: "array",
-              of: [{ type: "block" }],
+              of: [ssRichBlock],
             }),
           ],
-          preview: { select: { title: "name" } },
+          preview: { select: { title: "name", media: "image" } },
         }),
       ],
     }),

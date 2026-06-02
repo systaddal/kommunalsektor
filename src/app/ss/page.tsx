@@ -1,5 +1,7 @@
 import { PortableText } from "next-sanity";
 import { client } from "@/sanity/lib/client";
+import { ssPortableText } from "./ssPortableText";
+import SSTag from "./SSTag";
 
 type SSHomepage = {
   tagline: string;
@@ -12,6 +14,20 @@ async function getSSHomepage(): Promise<SSHomepage | null> {
     {},
     { next: { revalidate: 60 } },
   );
+}
+
+// Tag-pillen er sidetittelen, så ein leiande h1 med same tekst er overflødig
+function withoutDuplicateTitle(body: any[], tagline?: string): any[] {
+  if (!Array.isArray(body) || body.length === 0 || !tagline) return body;
+  const first = body[0];
+  const firstText: string = (first?.children ?? [])
+    .map((c: any) => c?.text ?? "")
+    .join("");
+  const isDuplicateTitle =
+    first?._type === "block" &&
+    first?.style === "h1" &&
+    firstText.trim().toLowerCase() === tagline.trim().toLowerCase();
+  return isDuplicateTitle ? body.slice(1) : body;
 }
 
 export default async function SSHome() {
@@ -36,14 +52,15 @@ export default async function SSHome() {
       <div className="max-w-3xl mx-auto">
         {data.tagline && (
           <div className="mb-10">
-            <span className="inline-block text-[14px] text-[#666] border border-[#ccc] rounded-full px-3.5 py-1">
-              {data.tagline}
-            </span>
+            <SSTag>{data.tagline}</SSTag>
           </div>
         )}
         {data.body && (
-          <div className="space-y-7 text-[#444] leading-[1.7] text-xl tracking-tight prose-ss">
-            <PortableText value={data.body} />
+          <div className="space-y-7 text-[#444] leading-[1.7] text-lg tracking-tight prose-ss">
+            <PortableText
+              value={withoutDuplicateTitle(data.body, data.tagline)}
+              components={ssPortableText}
+            />
           </div>
         )}
       </div>

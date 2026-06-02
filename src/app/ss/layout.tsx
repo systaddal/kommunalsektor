@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { TikTok_Sans } from "next/font/google";
 import SSNav from "./SSNav";
-import SSNavCards from "./SSNavCards";
-import SSFooter from "./SSFooter";
+import SSPageEnd from "./SSPageEnd";
 
 const tiktokSans = TikTok_Sans({
   variable: "--font-tiktok",
@@ -48,8 +47,7 @@ export default function SSLayout({
     >
       <SSNav />
       {children}
-      <SSNavCards />
-      <SSFooter />
+      <SSPageEnd />
     </div>
   );
 }
