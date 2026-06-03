@@ -12,12 +12,31 @@ export default function SSContactForm() {
     const form = e.currentTarget;
     const data = new FormData(form);
 
+    // HubSpot Forms API (portal 147587677, EU). Feltnamna må stemme med
+    // skjemaet i HubSpot: firstname, lastname, email, phone, message.
+    const payload = {
+      fields: [
+        { name: "firstname", value: String(data.get("firstname") ?? "") },
+        { name: "lastname", value: String(data.get("lastname") ?? "") },
+        { name: "email", value: String(data.get("email") ?? "") },
+        { name: "phone", value: String(data.get("phone") ?? "") },
+        { name: "message", value: String(data.get("message") ?? "") },
+      ].filter((f) => f.value !== ""),
+      context: {
+        pageUri: typeof window !== "undefined" ? window.location.href : "",
+        pageName: "selsengsystaddal.no — kontakt",
+      },
+    };
+
     try {
-      const res = await fetch("https://formspree.io/f/xwpodwkn", {
-        method: "POST",
-        body: data,
-        headers: { Accept: "application/json" },
-      });
+      const res = await fetch(
+        "https://api-eu1.hsforms.com/submissions/v3/integration/submit/147587677/01f98400-3813-4600-8135-cc26736437d2",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        }
+      );
 
       if (res.ok) {
         setStatus("sent");
@@ -50,29 +69,34 @@ export default function SSContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      {/* Skjult emnefelt slik at innboksen ser kvar meldinga kjem frå */}
-      <input type="hidden" name="_subject" value="Ny melding frå selsengsystaddal.no" />
-
       <div className="grid sm:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="name" className="block text-sm text-[#444] mb-1.5">
-            Namn
+          <label htmlFor="firstname" className="block text-sm text-[#444] mb-1.5">
+            Fornamn
           </label>
-          <input type="text" id="name" name="name" required className={field} placeholder="Ditt namn" />
+          <input type="text" id="firstname" name="firstname" required className={field} placeholder="Ditt fornamn" />
         </div>
+        <div>
+          <label htmlFor="lastname" className="block text-sm text-[#444] mb-1.5">
+            Etternamn
+          </label>
+          <input type="text" id="lastname" name="lastname" required className={field} placeholder="Ditt etternamn" />
+        </div>
+      </div>
+
+      <div className="grid sm:grid-cols-2 gap-4">
         <div>
           <label htmlFor="email" className="block text-sm text-[#444] mb-1.5">
             E-post
           </label>
           <input type="email" id="email" name="email" required className={field} placeholder="din@epost.no" />
         </div>
-      </div>
-
-      <div>
-        <label htmlFor="org" className="block text-sm text-[#444] mb-1.5">
-          Kommune / organisasjon
-        </label>
-        <input type="text" id="org" name="organization" className={field} placeholder="Valfritt" />
+        <div>
+          <label htmlFor="phone" className="block text-sm text-[#444] mb-1.5">
+            Telefonnummer
+          </label>
+          <input type="tel" id="phone" name="phone" className={field} placeholder="Valfritt" />
+        </div>
       </div>
 
       <div>
