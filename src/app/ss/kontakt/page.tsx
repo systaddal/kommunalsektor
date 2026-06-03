@@ -68,12 +68,6 @@ export default function SSKontaktPage() {
               className="self-start inline-flex items-center text-sm text-[#111] bg-white border border-[#ddd] rounded-full px-6 py-3 hover:bg-[#f5f5f5] transition-colors cursor-pointer"
             >
               <div className="p-6 sm:p-8">
-                <h2 className="text-lg font-medium text-[#111] tracking-tight mb-1 pr-10">
-                  Skriv ein melding
-                </h2>
-                <p className="text-sm text-[#666] mb-6">
-                  Send oss nokre ord, så kjem me tilbake til deg.
-                </p>
                 <SSContactForm />
               </div>
             </ModalButton>
