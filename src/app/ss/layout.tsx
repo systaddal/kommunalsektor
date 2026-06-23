@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { TikTok_Sans } from "next/font/google";
+import { TikTok_Sans, Source_Serif_4 } from "next/font/google";
 import SSNav from "./SSNav";
 import SSPageEnd from "./SSPageEnd";
 import SSConsent from "./SSConsent";
@@ -8,6 +8,14 @@ const tiktokSans = TikTok_Sans({
   variable: "--font-tiktok",
   subsets: ["latin", "latin-ext"],
   weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+const sourceSerif = Source_Serif_4({
+  variable: "--font-serif-ss",
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "600"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -38,7 +46,7 @@ export default function SSLayout({
 }) {
   return (
     <div
-      className={tiktokSans.variable}
+      className={`${tiktokSans.variable} ${sourceSerif.variable}`}
       style={{
         fontFamily: "var(--font-tiktok), 'TikTok Sans', sans-serif",
         background: "#fff",

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const WORDS = ["Folk", "system"] as const;
+const WORDS = ["folk", "system"] as const;
 const MIDDLE = "skapar";
 const INTERVAL_MS = 5000;
 

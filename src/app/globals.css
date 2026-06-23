@@ -122,18 +122,20 @@ body {
   align-items: baseline;
   gap: 0.3em;
   margin: 0;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.08;
   text-align: center;
-  color: #111;
+  color: #314D3C;
+  text-transform: lowercase;
+  font-family: var(--font-serif-ss), "Source Serif 4", Georgia, serif;
   font-size: clamp(2.25rem, 7vw, 4.5rem);
 }
 
 .ssh__mid {
   font-weight: 400;
   font-style: italic;
-  color: #b3ada3;
+  color: #2F2B26;
 }
 
 .ssh__word {

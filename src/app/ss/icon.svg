@@ -1,3 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-  <text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-size="28">💡</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 48 48" fill="#314D3C">
+  <g transform="translate(0,7.5)">
+    <rect x="0" y="24" width="22" height="9" rx="2.5"/>
+    <rect x="13" y="12.5" width="22" height="9" rx="2.5"/>
+    <rect x="26" y="1" width="22" height="9" rx="2.5"/>
+  </g>
 </svg>
