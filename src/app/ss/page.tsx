@@ -2,6 +2,7 @@ import { PortableText } from "next-sanity";
 import { client } from "@/sanity/lib/client";
 import { ssPortableText } from "./ssPortableText";
 import SSTag from "./SSTag";
+import SSAnimatedHeadline from "./SSAnimatedHeadline";
 
 type SSHomepage = {
   tagline: string;
@@ -50,6 +51,9 @@ export default async function SSHome() {
   return (
     <section id="om" className="px-6 sm:px-10 py-20 sm:py-28">
       <div className="max-w-3xl mx-auto">
+        <div className="mb-12 sm:mb-16">
+          <SSAnimatedHeadline />
+        </div>
         {data.tagline && (
           <div className="mb-10">
             <SSTag>{data.tagline}</SSTag>
