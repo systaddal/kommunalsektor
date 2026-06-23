@@ -58,7 +58,7 @@ export default async function FolkPage() {
 
   if (!data) {
     return (
-      <div className="px-6 sm:px-10 py-20 text-center text-[#999]">
+      <div className="px-6 sm:px-10 py-20 text-center text-[#938C7F]">
         <p>
           Innhald ikkje funne. Legg til folk-innhald i{" "}
           <a href="/studio" className="underline">
@@ -79,7 +79,7 @@ export default async function FolkPage() {
           </div>
         )}
         {data.intro && (
-          <div className="space-y-7 text-[#444] leading-[1.7] text-lg tracking-tight prose-ss">
+          <div className="space-y-7 text-[#2F2B26] leading-[1.7] text-lg tracking-tight prose-ss">
             <PortableText value={data.intro} components={ssPortableText} />
           </div>
         )}
@@ -91,7 +91,7 @@ export default async function FolkPage() {
               return (
                 <div key={person.name}>
                   {portrait && (
-                    <div className="relative aspect-[3/2] rounded-2xl overflow-hidden bg-[#f0f0f0] mb-6">
+                    <div className="relative aspect-[3/2] rounded-2xl overflow-hidden bg-[#E4DAC8] mb-6">
                       <Image
                         src={portrait}
                         alt={person.name}
@@ -101,11 +101,11 @@ export default async function FolkPage() {
                       />
                     </div>
                   )}
-                  <h2 className="text-lg font-medium text-[#111] mb-4 tracking-tight">
+                  <h2 className="text-lg font-medium text-[#2F2B26] mb-4 tracking-tight">
                     {person.name}
                   </h2>
                   {person.bio && (
-                    <div className="space-y-5 text-[#444] leading-[1.7] text-lg tracking-tight prose-ss">
+                    <div className="space-y-5 text-[#2F2B26] leading-[1.7] text-lg tracking-tight prose-ss">
                       <PortableText value={person.bio} components={ssPortableText} />
                     </div>
                   )}

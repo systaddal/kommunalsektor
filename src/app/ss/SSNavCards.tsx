@@ -40,14 +40,14 @@ export default function SSNavCards() {
           <Link
             key={card.path}
             href={ssHref(card.path)}
-            className="flex-1 flex flex-col rounded-2xl border border-[#eee] bg-[#fafafa] p-6 min-h-[140px] group hover:border-[#ddd] hover:shadow-sm transition-all"
+            className="flex-1 flex flex-col rounded-2xl border border-[#E4DBCB] bg-[#FAF8F3] p-6 min-h-[140px] group hover:border-[#CFC5B2] hover:shadow-sm transition-all"
           >
-            <h2 className="text-[#111] font-medium text-lg tracking-tight">
+            <h2 className="text-[#2F2B26] font-medium text-lg tracking-tight">
               {card.title}
             </h2>
 
             {card.images && (
-              <div className="relative aspect-[2/1] rounded-xl overflow-hidden bg-[#eee] mt-4 flex gap-px">
+              <div className="relative aspect-[2/1] rounded-xl overflow-hidden bg-[#ECE4D6] mt-4 flex gap-px">
                 {card.images.map((src) => (
                   <div key={src} className="relative flex-1">
                     <Image
@@ -62,7 +62,7 @@ export default function SSNavCards() {
               </div>
             )}
 
-            <p className="text-[#999] text-sm leading-relaxed mt-auto pt-8">
+            <p className="text-[#938C7F] text-sm leading-relaxed mt-auto pt-8">
               {card.desc}
             </p>
           </Link>

@@ -51,12 +51,12 @@ export default function SSContactForm() {
 
   if (status === "sent") {
     return (
-      <div className="rounded-2xl border border-[#e2e2e2] bg-[#fafafa] px-8 py-10 text-center">
-        <p className="text-lg font-medium text-[#111] mb-1.5">Takk for meldinga.</p>
-        <p className="text-sm text-[#666]">Me kjem tilbake til deg så snart me kan.</p>
+      <div className="rounded-2xl border border-[#E4DBCB] bg-[#FAF8F3] px-8 py-10 text-center">
+        <p className="text-lg font-medium text-[#2F2B26] mb-1.5">Takk for meldinga.</p>
+        <p className="text-sm text-[#6B6860]">Me kjem tilbake til deg så snart me kan.</p>
         <button
           onClick={() => setStatus("idle")}
-          className="mt-6 text-sm text-[#666] underline hover:text-[#111] transition-colors cursor-pointer"
+          className="mt-6 text-sm text-[#6B6860] underline hover:text-[#2F2B26] transition-colors cursor-pointer"
         >
           Send ei ny melding
         </button>
@@ -65,19 +65,19 @@ export default function SSContactForm() {
   }
 
   const field =
-    "w-full px-4 py-3 bg-white border border-[#ddd] rounded-xl text-sm text-[#111] placeholder:text-[#aaa] outline-none focus:border-[#111] transition-colors";
+    "w-full px-4 py-3 bg-[#FAF8F3] border border-[#CFC5B2] rounded-xl text-sm text-[#2F2B26] placeholder:text-[#B9B0A2] outline-none focus:border-[#314D3C] transition-colors";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid sm:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="firstname" className="block text-sm text-[#444] mb-1.5">
+          <label htmlFor="firstname" className="block text-sm text-[#2F2B26] mb-1.5">
             Fornamn
           </label>
           <input type="text" id="firstname" name="firstname" required className={field} placeholder="Ditt fornamn" />
         </div>
         <div>
-          <label htmlFor="lastname" className="block text-sm text-[#444] mb-1.5">
+          <label htmlFor="lastname" className="block text-sm text-[#2F2B26] mb-1.5">
             Etternamn
           </label>
           <input type="text" id="lastname" name="lastname" required className={field} placeholder="Ditt etternamn" />
@@ -86,13 +86,13 @@ export default function SSContactForm() {
 
       <div className="grid sm:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="email" className="block text-sm text-[#444] mb-1.5">
+          <label htmlFor="email" className="block text-sm text-[#2F2B26] mb-1.5">
             E-post
           </label>
           <input type="email" id="email" name="email" required className={field} placeholder="din@epost.no" />
         </div>
         <div>
-          <label htmlFor="phone" className="block text-sm text-[#444] mb-1.5">
+          <label htmlFor="phone" className="block text-sm text-[#2F2B26] mb-1.5">
             Telefonnummer
           </label>
           <input type="tel" id="phone" name="phone" className={field} placeholder="Valfritt" />
@@ -100,7 +100,7 @@ export default function SSContactForm() {
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm text-[#444] mb-1.5">
+        <label htmlFor="message" className="block text-sm text-[#2F2B26] mb-1.5">
           Melding
         </label>
         <textarea
@@ -122,7 +122,7 @@ export default function SSContactForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="inline-flex items-center gap-2 text-sm text-white bg-[#111] rounded-full px-6 py-2.5 hover:bg-[#333] transition-colors disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+        className="inline-flex items-center gap-2 text-sm text-[#F6F1E8] bg-[#A65F3D] rounded-full px-6 py-2.5 hover:bg-[#8C4E32] transition-colors disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
       >
         {status === "sending" ? "Sender…" : "Send melding"}
       </button>

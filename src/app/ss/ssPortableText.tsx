@@ -5,32 +5,32 @@ import type { PortableTextComponents } from "@portabletext/react";
 export const ssPortableText: PortableTextComponents = {
   block: {
     h1: ({ children }) => (
-      <h1 className="text-2xl sm:text-3xl font-medium text-[#111] tracking-tight leading-tight mt-12 first:mt-0 mb-5">
+      <h1 className="text-2xl sm:text-3xl font-medium text-[#2F2B26] tracking-tight leading-tight mt-12 first:mt-0 mb-5">
         {children}
       </h1>
     ),
     h2: ({ children }) => (
-      <h2 className="text-xl sm:text-2xl font-medium text-[#111] tracking-tight leading-snug mt-12 first:mt-0 mb-4">
+      <h2 className="text-xl sm:text-2xl font-medium text-[#2F2B26] tracking-tight leading-snug mt-12 first:mt-0 mb-4">
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className="text-lg font-medium text-[#111] tracking-tight mt-8 first:mt-0 mb-3">
+      <h3 className="text-lg font-medium text-[#2F2B26] tracking-tight mt-8 first:mt-0 mb-3">
         {children}
       </h3>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="border-l-2 border-[#ddd] pl-5 my-7 text-[#666]">
+      <blockquote className="border-l-2 border-[#CFC5B2] pl-5 my-7 text-[#6B6860]">
         {children}
       </blockquote>
     ),
   },
   list: {
     bullet: ({ children }) => (
-      <ul className="list-disc pl-6 space-y-2 mb-7 marker:text-[#bbb]">{children}</ul>
+      <ul className="list-disc pl-6 space-y-2 mb-7 marker:text-[#B9B0A2]">{children}</ul>
     ),
     number: ({ children }) => (
-      <ol className="list-decimal pl-6 space-y-2 mb-7 marker:text-[#bbb]">{children}</ol>
+      <ol className="list-decimal pl-6 space-y-2 mb-7 marker:text-[#B9B0A2]">{children}</ol>
     ),
   },
   listItem: {
@@ -39,7 +39,7 @@ export const ssPortableText: PortableTextComponents = {
   },
   marks: {
     strong: ({ children }) => (
-      <strong className="font-medium text-[#111]">{children}</strong>
+      <strong className="font-medium text-[#2F2B26]">{children}</strong>
     ),
     em: ({ children }) => <em className="italic">{children}</em>,
     link: ({ children, value }) => (
@@ -47,7 +47,7 @@ export const ssPortableText: PortableTextComponents = {
         href={value?.href}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-[#111] underline underline-offset-2 hover:text-[#444] transition-colors"
+        className="text-[#314D3C] underline underline-offset-2 hover:text-[#28402F] transition-colors"
       >
         {children}
       </a>

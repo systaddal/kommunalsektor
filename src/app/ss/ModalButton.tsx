@@ -44,13 +44,13 @@ export default function ModalButton({
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className={`relative w-full ${panelClassName} my-auto bg-white rounded-2xl shadow-2xl`}
+            className={`relative w-full ${panelClassName} my-auto bg-[#FAF8F3] rounded-2xl shadow-2xl`}
           >
             <button
               type="button"
               onClick={() => setOpen(false)}
               aria-label="Lukk"
-              className="absolute top-3 right-3 z-10 flex items-center justify-center w-9 h-9 rounded-full bg-white/90 border border-[#eee] text-[#666] hover:text-[#111] hover:bg-white transition-colors cursor-pointer shadow-sm"
+              className="absolute top-3 right-3 z-10 flex items-center justify-center w-9 h-9 rounded-full bg-[#FAF8F3]/90 border border-[#E4DBCB] text-[#6B6860] hover:text-[#2F2B26] hover:bg-[#FAF8F3] transition-colors cursor-pointer shadow-sm"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                 <path d="M18 6 6 18M6 6l12 12" />

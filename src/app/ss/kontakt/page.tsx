@@ -27,7 +27,7 @@ export default function SSKontaktPage() {
           <SSTag>Kontakt</SSTag>
         </div>
 
-        <p className="text-[#444] leading-[1.7] text-lg tracking-tight max-w-xl mb-12">
+        <p className="text-[#2F2B26] leading-[1.7] text-lg tracking-tight max-w-xl mb-12">
           Me tar gjerne ein uforpliktande prat om kva me kan bidra med hjå dykk.
           Book eit møte direkte, eller send oss nokre ord.
         </p>
@@ -35,17 +35,17 @@ export default function SSKontaktPage() {
         {/* To vegar inn: book eller skriv */}
         <section className="grid sm:grid-cols-2 gap-4">
           {/* Book eit møte */}
-          <div className="flex flex-col rounded-2xl border border-[#eee] bg-[#fafafa] p-8">
-            <h2 className="text-xl font-medium text-[#111] tracking-tight mb-2">
+          <div className="flex flex-col rounded-2xl border border-[#E4DBCB] bg-[#FAF8F3] p-8">
+            <h2 className="text-xl font-medium text-[#2F2B26] tracking-tight mb-2">
               Book eit innsiktsmøte
             </h2>
-            <p className="text-sm text-[#666] leading-relaxed mb-7 flex-1">
+            <p className="text-sm text-[#6B6860] leading-relaxed mb-7 flex-1">
               Finn eit tidspunkt som passar. Kalenderen opnar seg her på sida.
             </p>
             <ModalButton
               label="Vel tidspunkt"
               panelClassName="max-w-4xl"
-              className="self-start inline-flex items-center text-sm text-[#111] bg-white border border-[#ddd] rounded-full px-6 py-3 hover:bg-[#f5f5f5] transition-colors cursor-pointer"
+              className="self-start inline-flex items-center text-sm text-[#2F2B26] bg-[#FAF8F3] border border-[#CFC5B2] rounded-full px-6 py-3 hover:bg-[#ECE4D6] transition-colors cursor-pointer"
             >
               <div className="p-3 sm:p-5">
                 <HubSpotMeetings src={MEETINGS_SRC} />
@@ -54,18 +54,18 @@ export default function SSKontaktPage() {
           </div>
 
           {/* Skriv ein melding */}
-          <div className="flex flex-col rounded-2xl border border-[#eee] bg-[#fafafa] p-8">
-            <h2 className="text-xl font-medium text-[#111] tracking-tight mb-2">
+          <div className="flex flex-col rounded-2xl border border-[#E4DBCB] bg-[#FAF8F3] p-8">
+            <h2 className="text-xl font-medium text-[#2F2B26] tracking-tight mb-2">
               Skriv ein melding
             </h2>
-            <p className="text-sm text-[#666] leading-relaxed mb-7 flex-1">
+            <p className="text-sm text-[#6B6860] leading-relaxed mb-7 flex-1">
               Har du eit spørsmål eller noko på hjartet? Send oss nokre ord, så
               kjem me tilbake til deg.
             </p>
             <ModalButton
               label="Skriv melding"
               panelClassName="max-w-lg"
-              className="self-start inline-flex items-center text-sm text-[#111] bg-white border border-[#ddd] rounded-full px-6 py-3 hover:bg-[#f5f5f5] transition-colors cursor-pointer"
+              className="self-start inline-flex items-center text-sm text-[#2F2B26] bg-[#FAF8F3] border border-[#CFC5B2] rounded-full px-6 py-3 hover:bg-[#ECE4D6] transition-colors cursor-pointer"
             >
               <div className="p-6 sm:p-8">
                 <SSContactForm />
@@ -74,11 +74,11 @@ export default function SSKontaktPage() {
           </div>
         </section>
 
-        <p className="text-sm text-[#999] mt-8 text-center">
+        <p className="text-sm text-[#938C7F] mt-8 text-center">
           Eller send ein e-post direkte til{" "}
           <a
             href="mailto:hei@selsengsystaddal.no"
-            className="text-[#444] underline hover:text-[#111] transition-colors"
+            className="text-[#2F2B26] underline hover:text-[#2F2B26] transition-colors"
           >
             hei@selsengsystaddal.no
           </a>

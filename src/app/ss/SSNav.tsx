@@ -27,11 +27,11 @@ export default function SSNav() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 px-6 sm:px-10 py-6 bg-white/85 backdrop-blur-md">
+      <header className="sticky top-0 z-50 px-6 sm:px-10 py-6 bg-[#F6F1E8]/85 backdrop-blur-md">
         <div className="max-w-3xl mx-auto flex items-center justify-between">
           <Link
             href={ssHref("/ss")}
-            className="flex items-center gap-2.5 text-sm font-medium tracking-tight text-[#111] hover:text-[#444] transition-colors"
+            className="flex items-center gap-2.5 text-sm font-medium tracking-tight text-[#314D3C] hover:text-[#28402F] transition-colors"
           >
             <svg
               viewBox="0 0 48 34"
@@ -53,8 +53,8 @@ export default function SSNav() {
                 href={ssHref(link.path)}
                 className={`text-sm px-3.5 py-1.5 rounded-full transition-colors cursor-pointer ${
                   pathname === link.path
-                    ? "bg-[#f0f0f0] text-[#111]"
-                    : "text-[#666] hover:bg-[#f5f5f5] hover:text-[#111]"
+                    ? "bg-[#E4DAC8] text-[#314D3C]"
+                    : "text-[#6B6860] hover:bg-[#ECE4D6] hover:text-[#314D3C]"
                 }`}
               >
                 {link.label}
@@ -62,7 +62,7 @@ export default function SSNav() {
             ))}
             <Link
               href={ssHref("/ss/kontakt")}
-              className="text-sm text-white bg-[#111] rounded-full px-5 py-1.5 ml-3 hover:bg-[#333] transition-colors cursor-pointer"
+              className="text-sm text-[#F6F1E8] bg-[#A65F3D] rounded-full px-5 py-1.5 ml-3 hover:bg-[#8C4E32] transition-colors cursor-pointer"
             >
               Kontakt oss
             </Link>
@@ -73,21 +73,21 @@ export default function SSNav() {
             className="sm:hidden flex flex-col justify-center gap-1.5 w-8 h-8 cursor-pointer"
             aria-label={open ? "Lukk meny" : "Opne meny"}
           >
-            <span className={`block h-[1.5px] w-5 bg-[#111] transition-all origin-center ${open ? "translate-y-[3px] rotate-45" : ""}`} />
-            <span className={`block h-[1.5px] w-5 bg-[#111] transition-all origin-center ${open ? "-translate-y-[3px] -rotate-45" : ""}`} />
+            <span className={`block h-[1.5px] w-5 bg-[#2F2B26] transition-all origin-center ${open ? "translate-y-[3px] rotate-45" : ""}`} />
+            <span className={`block h-[1.5px] w-5 bg-[#2F2B26] transition-all origin-center ${open ? "-translate-y-[3px] -rotate-45" : ""}`} />
           </button>
         </div>
       </header>
 
       {open && (
-        <div className="fixed inset-0 z-40 bg-white pt-20 px-8 sm:hidden">
+        <div className="fixed inset-0 z-40 bg-[#F6F1E8] pt-20 px-8 sm:hidden">
           <nav className="flex flex-col gap-2">
             {links.map((link) => (
               <Link
                 key={link.path}
                 href={ssHref(link.path)}
                 className={`text-2xl font-medium tracking-tight py-2 transition-colors ${
-                  pathname === link.path ? "text-[#111]" : "text-[#999] hover:text-[#111]"
+                  pathname === link.path ? "text-[#314D3C]" : "text-[#938C7F] hover:text-[#314D3C]"
                 }`}
               >
                 {link.label}
@@ -95,7 +95,7 @@ export default function SSNav() {
             ))}
             <Link
               href={ssHref("/ss/kontakt")}
-              className="inline-flex items-center gap-2 text-sm text-white bg-[#111] rounded-full px-5 py-2.5 mt-6 w-fit hover:bg-[#333] transition-colors"
+              className="inline-flex items-center gap-2 text-sm text-[#F6F1E8] bg-[#A65F3D] rounded-full px-5 py-2.5 mt-6 w-fit hover:bg-[#8C4E32] transition-colors"
             >
               Kontakt oss <span>&rarr;</span>
             </Link>

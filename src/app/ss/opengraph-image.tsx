@@ -10,7 +10,7 @@ export default function OgImage() {
     (
       <div
         style={{
-          background: "#111",
+          background: "#314D3C",
           width: "100%",
           height: "100%",
           display: "flex",
@@ -23,7 +23,7 @@ export default function OgImage() {
           style={{
             fontSize: 56,
             fontWeight: 500,
-            color: "#fff",
+            color: "#F6F1E8",
             lineHeight: 1.2,
             marginBottom: 24,
           }}
@@ -33,7 +33,7 @@ export default function OgImage() {
         <div
           style={{
             fontSize: 28,
-            color: "#999",
+            color: "#938C7F",
             lineHeight: 1.5,
             maxWidth: 700,
           }}
@@ -46,7 +46,7 @@ export default function OgImage() {
             bottom: 60,
             left: 100,
             fontSize: 18,
-            color: "#666",
+            color: "#6B6860",
           }}
         >
           selsengsystaddal.no

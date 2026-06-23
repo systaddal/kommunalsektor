@@ -36,7 +36,7 @@ export default async function SSHome() {
 
   if (!data) {
     return (
-      <div className="px-6 sm:px-10 py-20 text-center text-[#999]">
+      <div className="px-6 sm:px-10 py-20 text-center text-[#938C7F]">
         <p>
           Innhald ikkje funne. Legg til framsideinnhald i{" "}
           <a href="/studio" className="underline">
@@ -67,7 +67,7 @@ export default async function SSHome() {
           </div>
         )}
         {data.body && (
-          <div className="space-y-7 text-[#444] leading-[1.7] text-lg tracking-tight prose-ss">
+          <div className="space-y-7 text-[#2F2B26] leading-[1.7] text-lg tracking-tight prose-ss">
             <PortableText
               value={withoutDuplicateTitle(data.body, data.tagline)}
               components={ssPortableText}
