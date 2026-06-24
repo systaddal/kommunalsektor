@@ -134,7 +134,7 @@ body {
 
 .ssh__mid {
   font-weight: 400;
-  font-style: italic;
+  font-style: normal;
   color: #2F2B26;
 }
 
@@ -174,4 +174,14 @@ body {
   .ssh__letter {
     animation: none;
   }
+}
+
+.ss-subtitle {
+  text-align: center;
+  font-style: italic;
+  font-family: var(--font-serif-ss), "Source Serif 4", Georgia, serif;
+  color: #2F2B26;
+  font-size: clamp(1.05rem, 2.6vw, 1.4rem);
+  letter-spacing: -0.01em;
+  line-height: 1.4;
 }

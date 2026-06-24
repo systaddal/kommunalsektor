@@ -52,15 +52,18 @@ export default async function SSHome() {
     <section id="om" className="px-6 sm:px-10 py-20 sm:py-28">
       <div className="max-w-3xl mx-auto">
         <div className="flex justify-center mb-6">
-          <svg viewBox="0 0 48 34" fill="#314D3C" role="img" aria-label="Selseng & Systaddal" className="w-[60px] h-auto">
+          <svg viewBox="0 0 48 34" fill="#314D3C" role="img" aria-label="Selseng & Systaddal" className="w-[96px] h-auto">
             <rect x="0" y="24" width="22" height="9" rx="2.5" />
             <rect x="13" y="12.5" width="22" height="9" rx="2.5" />
             <rect x="26" y="1" width="22" height="9" rx="2.5" />
           </svg>
         </div>
-        <div className="mb-12 sm:mb-16">
+        <div className="mb-4 sm:mb-5">
           <SSAnimatedHeadline />
         </div>
+        <p className="ss-subtitle mb-12 sm:mb-16">
+          Betre samfunn gjennom betre organisasjonar
+        </p>
         {data.tagline && (
           <div className="mb-10">
             <SSTag>{data.tagline}</SSTag>
