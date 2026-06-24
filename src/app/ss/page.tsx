@@ -1,7 +1,6 @@
 import { PortableText } from "next-sanity";
 import { client } from "@/sanity/lib/client";
 import { ssPortableText } from "./ssPortableText";
-import SSTag from "./SSTag";
 import SSAnimatedHeadline from "./SSAnimatedHeadline";
 
 type SSHomepage = {
@@ -64,11 +63,6 @@ export default async function SSHome() {
         <p className="ss-subtitle mb-12 sm:mb-16">
           Betre samfunn gjennom betre organisasjonar
         </p>
-        {data.tagline && (
-          <div className="mb-10">
-            <SSTag>{data.tagline}</SSTag>
-          </div>
-        )}
         {data.body && (
           <div className="space-y-7 text-[#2F2B26] leading-[1.7] text-lg tracking-tight prose-ss">
             <PortableText
