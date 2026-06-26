@@ -31,8 +31,8 @@ export default function Footer() {
             </p>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/#kvifor" className="text-white/60 hover:text-white transition-colors">
-                  Kvifor kommune 4.0?
+                <Link href="/#podkast" className="text-white/60 hover:text-white transition-colors">
+                  Podcast
                 </Link>
               </li>
               <li>
@@ -42,7 +42,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/artiklar" className="text-white/60 hover:text-white transition-colors">
-                  Døme og artiklar
+                  Artiklar
                 </Link>
               </li>
               <li>
@@ -72,7 +72,15 @@ export default function Footer() {
         {/* Bottom */}
         <div className="border-t border-white/10 mt-10 pt-6">
           <p className="text-xs text-white/25">
-            &copy; {new Date().getFullYear()} Selseng &amp; Systaddal AS
+            &copy; {new Date().getFullYear()}{" "}
+            <a
+              href="https://www.selsengsystaddal.no/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/40 hover:text-white/70 underline-offset-2 hover:underline transition-colors"
+            >
+              Selseng &amp; Systaddal AS
+            </a>
           </p>
         </div>
       </div>

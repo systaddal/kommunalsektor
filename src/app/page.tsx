@@ -1,5 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
 import StepTabs from "@/components/StepTabs";
 import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
@@ -11,8 +13,6 @@ const serif = {
   fontWeight: 400 as const,
 };
 
-type OsRow = { oldTitle: string; oldDesc: string; newTitle: string; newDesc: string };
-type Outcome = { title: string; desc: string };
 type Step = {
   num: string;
   label: string;
@@ -21,14 +21,18 @@ type Step = {
   effects: string[];
 };
 
+type Post = {
+  _id: string;
+  title: string;
+  slug?: { current?: string };
+  summary?: string;
+  publishedAt?: string;
+  image?: unknown;
+};
+
 type Frontpage = {
   heroHeading: string;
   heroSubtitle: string;
-  osHeading: string;
-  osIntro: string;
-  osRows: OsRow[];
-  osSummary: string;
-  osOutcomes: Outcome[];
   fmHeading: string;
   fmSubtitle: string;
   fmSteps: Step[];
@@ -52,6 +56,25 @@ async function getFrontpage(): Promise<Frontpage> {
     {},
     { next: { revalidate: 60 } },
   );
+}
+
+async function getLatestPosts(): Promise<Post[]> {
+  return client.fetch(
+    `*[_type == "post"] | order(publishedAt desc)[0...3]{
+      _id, title, slug, summary, publishedAt, image
+    }`,
+    {},
+    { next: { revalidate: 60 } },
+  );
+}
+
+function formatDate(iso?: string): string | null {
+  if (!iso) return null;
+  return new Date(iso).toLocaleDateString("nn-NO", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 }
 
 function Hero({ data }: { data: Frontpage }) {
@@ -79,7 +102,7 @@ function Hero({ data }: { data: Frontpage }) {
       </p>
       <div className="mt-10 flex gap-4 justify-center">
         <Link
-          href="#operativsystem"
+          href="#artiklar"
           className="bg-[#2D4233] text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-[#3A5240] transition-colors"
         >
           Les meir
@@ -95,62 +118,74 @@ function Hero({ data }: { data: Frontpage }) {
   );
 }
 
-function SectionOperativsystem({ data }: { data: Frontpage }) {
+function SectionArtiklar({ data, posts }: { data: Frontpage; posts: Post[] }) {
   return (
-    <section id="operativsystem" className="border-t border-[rgba(28,28,26,0.09)]">
+    <section id="artiklar" className="border-t border-[rgba(28,28,26,0.09)]">
       <div className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
-        <div className="max-w-[720px] mb-12">
-          <h2 className="text-3xl sm:text-4xl tracking-tight mb-6 text-[#1C1C1A]" style={serif}>
-            {data.osHeading}
-          </h2>
-          <p className="text-[#3a3a38] leading-[1.75] text-base">
-            {data.osIntro}
-          </p>
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
+          <div className="max-w-[720px]">
+            <h2
+              className="text-3xl sm:text-4xl tracking-tight mb-4 text-[#1C1C1A]"
+              style={serif}
+            >
+              {data.domeHeading || "Siste artiklar"}
+            </h2>
+            {data.domeSubtitle && (
+              <p className="text-[#6B6860] text-base sm:text-lg leading-relaxed">
+                {data.domeSubtitle}
+              </p>
+            )}
+          </div>
+          <Link
+            href="/artiklar"
+            className="bg-[#2D4233] text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-[#3A5240] transition-colors flex-shrink-0 self-start sm:self-auto"
+          >
+            Sjå alle artiklar
+          </Link>
         </div>
 
-        {data.osRows && data.osRows.length > 0 && (
-          <div className="grid md:grid-cols-2 gap-x-6 gap-y-0">
-            <p className="text-xs font-semibold uppercase tracking-wider text-[#6B6860] mb-4">
-              Dei gamle systema
-            </p>
-            <p className="text-xs font-semibold uppercase tracking-wider text-[#2D4233] mb-4 max-md:hidden">
-              Dei nye systema
-            </p>
-
-            {data.osRows.map((row, i) => (
-              <div key={i} className="contents">
-                <div className="border border-[rgba(28,28,26,0.09)] rounded-xl p-5 bg-[#F8F6F1] mb-3">
-                  <p className="font-semibold text-[#1C1C1A] text-sm">{row.oldTitle}</p>
-                  <p className="text-[#6B6860] text-sm mt-1">{row.oldDesc}</p>
+        {posts && posts.length > 0 ? (
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {posts.map((post) => (
+              <Link
+                key={post._id}
+                href={`/artiklar/${post.slug?.current ?? ""}`}
+                className="group block border border-[rgba(28,28,26,0.09)] rounded-xl overflow-hidden bg-white hover:shadow-[0_4px_14px_rgba(28,28,26,0.09)] transition-shadow"
+              >
+                {post.image ? (
+                  <div className="aspect-[16/10] relative bg-[#F5F2EB]">
+                    <Image
+                      src={urlFor(post.image).width(640).height(400).url()}
+                      alt={post.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                  </div>
+                ) : null}
+                <div className="p-5">
+                  {formatDate(post.publishedAt) && (
+                    <p className="text-xs text-[#9B9790] mb-2">
+                      {formatDate(post.publishedAt)}
+                    </p>
+                  )}
+                  <h3 className="text-base sm:text-lg font-medium text-[#1C1C1A] group-hover:text-[#2D4233] transition-colors">
+                    {post.title}
+                  </h3>
+                  {post.summary && (
+                    <p className="mt-2 text-[#6B6860] text-sm leading-relaxed line-clamp-2">
+                      {post.summary}
+                    </p>
+                  )}
                 </div>
-                {i === 0 && (
-                  <p className="text-xs font-semibold uppercase tracking-wider text-[#2D4233] mb-4 md:hidden">
-                    Dei nye systema
-                  </p>
-                )}
-                <div className="border border-[#C8DEC8] rounded-xl p-5 bg-[#EEF5EE] mb-3">
-                  <p className="font-semibold text-[#1C1C1A] text-sm">{row.newTitle}</p>
-                  <p className="text-[#3a3a38] text-sm mt-1">{row.newDesc}</p>
-                </div>
-              </div>
+              </Link>
             ))}
           </div>
-        )}
-
-        {data.osSummary && (
-          <p className="text-sm text-[#6B6860] mt-6 italic text-center">
-            {data.osSummary}
-          </p>
-        )}
-
-        {data.osOutcomes && data.osOutcomes.length > 0 && (
-          <div className="mt-14 border-t border-[rgba(28,28,26,0.09)] pt-10 grid sm:grid-cols-3 gap-6">
-            {data.osOutcomes.map((item) => (
-              <div key={item.title} className="border-l-2 border-[#2D4233] pl-5 py-1">
-                <p className="font-semibold text-[#1C1C1A] text-sm">{item.title}</p>
-                <p className="text-[#6B6860] text-sm mt-1">{item.desc}</p>
-              </div>
-            ))}
+        ) : (
+          <div className="border border-dashed border-[rgba(28,28,26,0.14)] rounded-xl p-10 text-center">
+            <p className="text-[#6B6860] text-base">
+              Ingen artiklar publiserte enno.
+            </p>
           </div>
         )}
       </div>
@@ -213,67 +248,47 @@ function SectionFramgangsmaate({ data }: { data: Frontpage }) {
   );
 }
 
-function SectionDomeOgKontakt({ data }: { data: Frontpage }) {
+function SectionKontakt({ data }: { data: Frontpage }) {
   const email = data.kontaktEmail || "post@kommunalsektor.no";
 
   return (
-    <>
-      <section id="dome" className="border-t border-[rgba(28,28,26,0.09)]">
-        <div className="mx-auto max-w-5xl px-6 py-16 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div>
-            <h2 className="text-2xl sm:text-3xl tracking-tight text-[#1C1C1A]" style={serif}>
-              {data.domeHeading}
-            </h2>
-            <p className="text-[#6B6860] text-base mt-2">
-              {data.domeSubtitle}
-            </p>
-          </div>
-          <Link
-            href="/artiklar"
-            className="bg-[#2D4233] text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-[#3A5240] transition-colors flex-shrink-0"
-          >
-            Sjå alle artiklar
-          </Link>
+    <section id="kontakt" className="border-t border-[rgba(28,28,26,0.09)]">
+      <div className="mx-auto max-w-3xl px-6 py-20 sm:py-28 text-center">
+        <h2 className="text-3xl sm:text-4xl tracking-tight text-[#1C1C1A] mb-4" style={serif}>
+          {data.kontaktHeading}
+        </h2>
+        <p className="text-[#3a3a38] leading-relaxed text-base mb-10 max-w-lg mx-auto">
+          {data.kontaktSubtitle}
+        </p>
+
+        <a
+          href={`mailto:${email}`}
+          className="inline-flex items-center gap-3 bg-white border border-[rgba(28,28,26,0.14)] rounded-2xl px-8 py-5 hover:border-[#C8DEC8] hover:bg-[#FAFAF7] transition-all group"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-[#2D4233] flex-shrink-0">
+            <rect x="2" y="4" width="20" height="16" rx="2" />
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+          </svg>
+          <span className="text-lg font-medium text-[#1C1C1A] group-hover:text-[#2D4233] transition-colors">
+            {email}
+          </span>
+        </a>
+
+        <div className="mt-10 text-sm text-[#6B6860] space-y-0.5">
+          {data.kontaktCompany && <p className="font-medium text-[#1C1C1A]">{data.kontaktCompany}</p>}
+          {data.kontaktPeople && <p>{data.kontaktPeople}</p>}
+          {data.kontaktLocation && <p className="pt-1">{data.kontaktLocation}</p>}
         </div>
-      </section>
-
-      <section id="kontakt" className="border-t border-[rgba(28,28,26,0.09)]">
-        <div className="mx-auto max-w-3xl px-6 py-20 sm:py-28 text-center">
-          <h2 className="text-3xl sm:text-4xl tracking-tight text-[#1C1C1A] mb-4" style={serif}>
-            {data.kontaktHeading}
-          </h2>
-          <p className="text-[#3a3a38] leading-relaxed text-base mb-10 max-w-lg mx-auto">
-            {data.kontaktSubtitle}
-          </p>
-
-          <a
-            href={`mailto:${email}`}
-            className="inline-flex items-center gap-3 bg-white border border-[rgba(28,28,26,0.14)] rounded-2xl px-8 py-5 hover:border-[#C8DEC8] hover:bg-[#FAFAF7] transition-all group"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-[#2D4233] flex-shrink-0">
-              <rect x="2" y="4" width="20" height="16" rx="2" />
-              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-            </svg>
-            <span className="text-lg font-medium text-[#1C1C1A] group-hover:text-[#2D4233] transition-colors">
-              {email}
-            </span>
-          </a>
-
-          <div className="mt-10 text-sm text-[#6B6860] space-y-0.5">
-            {data.kontaktCompany && <p className="font-medium text-[#1C1C1A]">{data.kontaktCompany}</p>}
-            {data.kontaktPeople && <p>{data.kontaktPeople}</p>}
-            {data.kontaktLocation && <p className="pt-1">{data.kontaktLocation}</p>}
-          </div>
-        </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
 
 export default async function Home() {
-  const [data, episodes] = await Promise.all([
+  const [data, episodes, posts] = await Promise.all([
     getFrontpage(),
     getEpisodes(8),
+    getLatestPosts(),
   ]);
 
   if (!data) {
@@ -289,9 +304,9 @@ export default async function Home() {
       <Nav />
       <Hero data={data} />
       <PodcastSection episodes={episodes} />
-      <SectionOperativsystem data={data} />
+      <SectionArtiklar data={data} posts={posts} />
       <SectionFramgangsmaate data={data} />
-      <SectionDomeOgKontakt data={data} />
+      <SectionKontakt data={data} />
       <Footer />
     </div>
   );
