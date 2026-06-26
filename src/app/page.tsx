@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { PortableText } from "next-sanity";
 import { client } from "@/sanity/lib/client";
 import StepTabs from "@/components/StepTabs";
 import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
+import PodcastSection from "@/components/PodcastSection";
+import { getEpisodes } from "@/lib/podcast";
 
 const serif = {
   fontFamily: "var(--font-serif), 'Fraunces', serif",
@@ -23,9 +24,6 @@ type Step = {
 type Frontpage = {
   heroHeading: string;
   heroSubtitle: string;
-  kviforHeading: string;
-  kviforLeftColumn: any[];
-  kviforRightColumn: any[];
   osHeading: string;
   osIntro: string;
   osRows: OsRow[];
@@ -81,7 +79,7 @@ function Hero({ data }: { data: Frontpage }) {
       </p>
       <div className="mt-10 flex gap-4 justify-center">
         <Link
-          href="#kvifor"
+          href="#operativsystem"
           className="bg-[#2D4233] text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-[#3A5240] transition-colors"
         >
           Les meir
@@ -92,29 +90,6 @@ function Hero({ data }: { data: Frontpage }) {
         >
           Ta kontakt
         </Link>
-      </div>
-    </section>
-  );
-}
-
-function SectionKvifor({ data }: { data: Frontpage }) {
-  return (
-    <section id="kvifor" className="border-t border-[rgba(28,28,26,0.09)]">
-      <div className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
-        <div className="max-w-[720px]">
-          <h2 className="text-3xl sm:text-4xl tracking-tight mb-10 text-[#1C1C1A]" style={serif}>
-            {data.kviforHeading}
-          </h2>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-10 md:gap-16 text-[#3a3a38] leading-[1.75] text-base">
-          <div className="space-y-5 prose-kvifor">
-            {data.kviforLeftColumn && <PortableText value={data.kviforLeftColumn} />}
-          </div>
-          <div className="space-y-5 prose-kvifor">
-            {data.kviforRightColumn && <PortableText value={data.kviforRightColumn} />}
-          </div>
-        </div>
       </div>
     </section>
   );
@@ -296,7 +271,10 @@ function SectionDomeOgKontakt({ data }: { data: Frontpage }) {
 }
 
 export default async function Home() {
-  const data = await getFrontpage();
+  const [data, episodes] = await Promise.all([
+    getFrontpage(),
+    getEpisodes(8),
+  ]);
 
   if (!data) {
     return (
@@ -310,7 +288,7 @@ export default async function Home() {
     <div className="min-h-screen">
       <Nav />
       <Hero data={data} />
-      <SectionKvifor data={data} />
+      <PodcastSection episodes={episodes} />
       <SectionOperativsystem data={data} />
       <SectionFramgangsmaate data={data} />
       <SectionDomeOgKontakt data={data} />

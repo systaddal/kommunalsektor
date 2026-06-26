@@ -6,14 +6,14 @@ import { useEffect, useState } from "react";
 
 const items = [
   { href: "/", label: "Hjem", section: null },
-  { href: "/#kvifor", label: "Kvifor", section: "kvifor" },
+  { href: "/#podkast", label: "Podcast", section: "podkast" },
   { href: "/#framgangsmaate", label: "Framgangsmåte", section: "framgangsmaate" },
   { href: "/artiklar", label: "Døme", section: null },
   { href: "/om", label: "Om oss", section: null },
   { href: "/#kontakt", label: "Kontakt", section: "kontakt" },
 ];
 
-const sectionIds = ["kvifor", "operativsystem", "framgangsmaate", "dome", "kontakt"];
+const sectionIds = ["podkast", "operativsystem", "framgangsmaate", "dome", "kontakt"];
 
 export default function Nav() {
   const pathname = usePathname();
@@ -58,7 +58,7 @@ export default function Nav() {
     if (activeSection) {
       if (item.section) {
         // "framgangsmaate" tab also covers "operativsystem" and "dome"
-        if (item.section === "kvifor") return activeSection === "kvifor";
+        if (item.section === "podkast") return activeSection === "podkast";
         if (item.section === "framgangsmaate")
           return activeSection === "operativsystem" || activeSection === "framgangsmaate" || activeSection === "dome";
         if (item.section === "kontakt") return activeSection === "kontakt";
