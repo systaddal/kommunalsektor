@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, DM_Sans } from "next/font/google";
+import { Fraunces, Inter, IBM_Plex_Mono } from "next/font/google";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
@@ -11,10 +11,17 @@ const fraunces = Fraunces({
   display: "swap",
 });
 
-const dmSans = DM_Sans({
+const inter = Inter({
   variable: "--font-dm-sans",
   subsets: ["latin", "latin-ext"],
   weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
   display: "swap",
 });
 
@@ -66,9 +73,9 @@ export default function RootLayout({
         </Script>
       </head>
       <body
-        className={`${fraunces.variable} ${dmSans.variable} antialiased`}
+        className={`${fraunces.variable} ${inter.variable} ${plexMono.variable} antialiased`}
         style={{
-          fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif",
+          fontFamily: "var(--font-dm-sans), 'Inter', sans-serif",
         }}
       >
         {children}

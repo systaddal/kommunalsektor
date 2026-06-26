@@ -75,8 +75,8 @@ export default function Nav() {
             href={item.href}
             className={`px-5 py-2 rounded-full text-sm transition-all ${
               isActive(item)
-                ? "bg-[#E8E2D6] text-[#1C1C1A] font-medium"
-                : "text-[#3a3a38] hover:bg-[#E8E2D6] hover:text-[#1C1C1A]"
+                ? "bg-[#D8E0D6] text-[#18251D] font-medium"
+                : "text-[#43565A] hover:bg-[#D8E0D6] hover:text-[#18251D]"
             }`}
           >
             {item.label}

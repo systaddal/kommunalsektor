@@ -8,8 +8,8 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <svg
-              width={18}
-              height={23}
+              width={32}
+              height={41}
               viewBox="0 0 135 171"
               fill="currentColor"
               className="text-white/50 mb-4"
