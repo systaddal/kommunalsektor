@@ -8,6 +8,7 @@ const items = [
   { href: "/", label: "Hjem", section: null },
   { href: "/#podkast", label: "Podcast", section: "podkast" },
   { href: "/artiklar", label: "Artiklar", section: null },
+  { href: "/fellesskap", label: "Fellesskap", section: null },
   { href: "/om", label: "Om oss", section: null },
   { href: "/#kontakt", label: "Kontakt", section: "kontakt" },
 ];

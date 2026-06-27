@@ -127,7 +127,7 @@ function Hero({ data }: { data: Frontpage }) {
           </Link>
         </div>
 
-        <div className="mt-14 border-t border-[#D8D2C4] pt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto text-left">
+        <div className="mt-14 border-t border-[#D8D2C4] pt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 mx-auto text-left">
           <Link
             href="/artiklar"
             className="group flex items-start justify-between gap-3 rounded-xl border border-[rgba(28,28,26,0.12)] bg-[#FAF7EF] px-5 py-4 hover:border-[#2D4233] transition-colors"
@@ -147,6 +147,18 @@ function Hero({ data }: { data: Frontpage }) {
             <span>
               <span className="block text-sm font-medium text-[#18251D]">Samfunnsoppdraget</span>
               <span className="block mt-0.5 text-xs text-[#43565A]">Podcast frå KommunalSektor</span>
+            </span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C7653A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="mt-0.5 flex-shrink-0">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </Link>
+          <Link
+            href="/fellesskap"
+            className="group flex items-start justify-between gap-3 rounded-xl border border-[rgba(28,28,26,0.12)] bg-[#FAF7EF] px-5 py-4 hover:border-[#2D4233] transition-colors"
+          >
+            <span>
+              <span className="block text-sm font-medium text-[#18251D]">Fellesskapet</span>
+              <span className="block mt-0.5 text-xs text-[#43565A]">Del og lær med andre</span>
             </span>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C7653A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="mt-0.5 flex-shrink-0">
               <path d="M5 12h14M13 6l6 6-6 6" />
