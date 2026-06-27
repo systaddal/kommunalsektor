@@ -33,6 +33,11 @@ type Post = {
 type Frontpage = {
   heroHeading: string;
   heroSubtitle: string;
+  heroEyebrow?: string;
+  heroPrimaryLabel?: string;
+  heroSecondaryLabel?: string;
+  entryCards?: { title?: string; sub?: string }[];
+  domeButtonLabel?: string;
   fmHeading: string;
   fmSubtitle: string;
   fmSteps: Step[];
@@ -68,6 +73,22 @@ async function getLatestPosts(): Promise<Post[]> {
   );
 }
 
+type PodcastSettings = {
+  label?: string;
+  heading?: string;
+  intro?: string;
+  spotifyUrl?: string;
+  appleUrl?: string;
+};
+
+async function getPodcastSettings(): Promise<PodcastSettings | null> {
+  return client.fetch(
+    `*[_type == "podcastSettings"][0]`,
+    {},
+    { next: { revalidate: 60 } },
+  );
+}
+
 function formatDate(iso?: string): string | null {
   if (!iso) return null;
   return new Date(iso).toLocaleDateString("nn-NO", {
@@ -89,7 +110,7 @@ function Hero({ data }: { data: Frontpage }) {
             <svg viewBox="0 0 135 171" aria-hidden="true" fill="currentColor" className="w-[11px] h-auto">
               <path d="M135 0V62.6113C135 118.177 74.445 166.696 67.5 171C60.555 166.696 0.000299323 118.177 0 62.6113V0H135Z" />
             </svg>
-            Frå prat til handling
+            {data.heroEyebrow || "Frå prat til handling"}
           </span>
         </div>
 
@@ -114,7 +135,7 @@ function Hero({ data }: { data: Frontpage }) {
             href="#artiklar"
             className="inline-flex items-center gap-2 bg-[#C7653A] text-[#FAF7EF] px-6 py-3 rounded-full text-sm font-medium hover:bg-[#A8542F] transition-colors"
           >
-            Les meir
+            {data.heroPrimaryLabel || "Les meir"}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M5 12h14M13 6l6 6-6 6" />
             </svg>
@@ -123,7 +144,7 @@ function Hero({ data }: { data: Frontpage }) {
             href="#kontakt"
             className="border border-[#2D4233] px-6 py-3 rounded-full text-sm font-medium text-[#2D4233] hover:bg-[#D8E0D6] transition-colors"
           >
-            Ta kontakt
+            {data.heroSecondaryLabel || "Ta kontakt"}
           </Link>
         </div>
 
@@ -133,8 +154,8 @@ function Hero({ data }: { data: Frontpage }) {
             className="group flex items-start justify-between gap-3 rounded-xl border border-[rgba(28,28,26,0.12)] bg-[#FAF7EF] px-5 py-4 hover:border-[#2D4233] transition-colors"
           >
             <span>
-              <span className="block text-sm font-medium text-[#18251D]">Siste saker</span>
-              <span className="block mt-0.5 text-xs text-[#43565A]">Erfaringar frå praksis</span>
+              <span className="block text-sm font-medium text-[#18251D]">{data.entryCards?.[0]?.title || "Siste saker"}</span>
+              <span className="block mt-0.5 text-xs text-[#43565A]">{data.entryCards?.[0]?.sub || "Erfaringar frå praksis"}</span>
             </span>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C7653A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="mt-0.5 flex-shrink-0">
               <path d="M5 12h14M13 6l6 6-6 6" />
@@ -145,8 +166,8 @@ function Hero({ data }: { data: Frontpage }) {
             className="group flex items-start justify-between gap-3 rounded-xl border border-[rgba(28,28,26,0.12)] bg-[#FAF7EF] px-5 py-4 hover:border-[#2D4233] transition-colors"
           >
             <span>
-              <span className="block text-sm font-medium text-[#18251D]">Samfunnsoppdraget</span>
-              <span className="block mt-0.5 text-xs text-[#43565A]">Podcast frå KommunalSektor</span>
+              <span className="block text-sm font-medium text-[#18251D]">{data.entryCards?.[1]?.title || "Samfunnsoppdraget"}</span>
+              <span className="block mt-0.5 text-xs text-[#43565A]">{data.entryCards?.[1]?.sub || "Podcast frå KommunalSektor"}</span>
             </span>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C7653A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="mt-0.5 flex-shrink-0">
               <path d="M5 12h14M13 6l6 6-6 6" />
@@ -157,8 +178,8 @@ function Hero({ data }: { data: Frontpage }) {
             className="group flex items-start justify-between gap-3 rounded-xl border border-[rgba(28,28,26,0.12)] bg-[#FAF7EF] px-5 py-4 hover:border-[#2D4233] transition-colors"
           >
             <span>
-              <span className="block text-sm font-medium text-[#18251D]">Fellesskapet</span>
-              <span className="block mt-0.5 text-xs text-[#43565A]">Del og lær med andre</span>
+              <span className="block text-sm font-medium text-[#18251D]">{data.entryCards?.[2]?.title || "Fellesskapet"}</span>
+              <span className="block mt-0.5 text-xs text-[#43565A]">{data.entryCards?.[2]?.sub || "Del og lær med andre"}</span>
             </span>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C7653A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="mt-0.5 flex-shrink-0">
               <path d="M5 12h14M13 6l6 6-6 6" />
@@ -192,7 +213,7 @@ function SectionArtiklar({ data, posts }: { data: Frontpage; posts: Post[] }) {
             href="/artiklar"
             className="bg-[#2D4233] text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-[#3A5240] transition-colors flex-shrink-0 self-start sm:self-auto"
           >
-            Sjå alle artiklar
+            {data.domeButtonLabel || "Sjå alle artiklar"}
           </Link>
         </div>
 
@@ -337,10 +358,11 @@ function SectionKontakt({ data }: { data: Frontpage }) {
 }
 
 export default async function Home() {
-  const [data, episodes, posts] = await Promise.all([
+  const [data, episodes, posts, podcast] = await Promise.all([
     getFrontpage(),
     getEpisodes(8),
     getLatestPosts(),
+    getPodcastSettings(),
   ]);
 
   if (!data) {
@@ -355,7 +377,7 @@ export default async function Home() {
     <div className="min-h-screen">
       <Nav />
       <Hero data={data} />
-      <PodcastSection episodes={episodes} />
+      <PodcastSection episodes={episodes} settings={podcast ?? undefined} />
       <SectionArtiklar data={data} posts={posts} />
       <SectionFramgangsmaate data={data} />
       <SectionKontakt data={data} />

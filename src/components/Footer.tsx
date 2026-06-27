@@ -1,6 +1,23 @@
 import Link from "next/link";
+import { client } from "@/sanity/lib/client";
 
-export default function Footer() {
+type SiteSettings = { footerTagline?: string; footerCompany?: string };
+
+async function getSettings(): Promise<SiteSettings | null> {
+  return client.fetch(
+    `*[_type == "siteSettings"][0]{ footerTagline, footerCompany }`,
+    {},
+    { next: { revalidate: 60 } },
+  );
+}
+
+export default async function Footer() {
+  const s = await getSettings();
+  const tagline =
+    s?.footerTagline ||
+    "Erfaringar og rammeverk for kommunar som vil gjere noko anna.";
+  const company = s?.footerCompany || "Selseng & Systaddal AS · Sogndal";
+
   return (
     <footer className="bg-[#2D4233] text-white">
       <div className="mx-auto max-w-5xl px-6 py-14 sm:py-16">
@@ -17,11 +34,9 @@ export default function Footer() {
               <path d="M135 0V62.6113C135 118.177 74.445 166.696 67.5 171C60.555 166.696 0.000299323 118.177 0 62.6113V0H135Z" />
             </svg>
             <p className="text-sm text-white/50 leading-relaxed max-w-xs">
-              Erfaringar og rammeverk for kommunar som vil gjere noko anna.
+              {tagline}
             </p>
-            <p className="text-xs text-white/30 mt-5">
-              Selseng &amp; Systaddal AS &middot; Sogndal
-            </p>
+            <p className="text-xs text-white/30 mt-5">{company}</p>
           </div>
 
           {/* Navigation */}

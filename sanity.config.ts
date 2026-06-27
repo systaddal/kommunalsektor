@@ -13,8 +13,17 @@ function kommunalSektorStructure(S: StructureBuilder) {
         .title("Framside")
         .child(S.document().schemaType("frontpage").documentId("frontpage")),
       S.listItem()
+        .title("Podcast")
+        .child(S.document().schemaType("podcastSettings").documentId("podcastSettings")),
+      S.listItem()
+        .title("Fellesskap")
+        .child(S.document().schemaType("fellesskapPage").documentId("fellesskapPage")),
+      S.listItem()
         .title("Om oss")
         .child(S.document().schemaType("aboutPage").documentId("aboutPage")),
+      S.listItem()
+        .title("Nettstadinnstillingar")
+        .child(S.document().schemaType("siteSettings").documentId("siteSettings")),
       S.documentTypeListItem("project").title("Prosjekt"),
       S.documentTypeListItem("page").title("Sider"),
       S.documentTypeListItem("post").title("Artiklar"),

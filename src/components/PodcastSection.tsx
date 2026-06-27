@@ -1,13 +1,17 @@
 import { type Episode, PODCAST_RSS_URL } from "@/lib/podcast";
 
+type PodcastSettings = {
+  label?: string;
+  heading?: string;
+  intro?: string;
+  spotifyUrl?: string;
+  appleUrl?: string;
+};
+
 const serif = {
   fontFamily: "var(--font-serif), 'Fraunces', serif",
   fontWeight: 400 as const,
 };
-
-// Fyll inn når podcasten ligg i katalogane. Tom verdi = knappen blir skjult.
-const SPOTIFY_URL: string = "https://open.spotify.com/show/033zfEoDsDQ30p0SrAv31v";
-const APPLE_URL: string = "https://podcasts.apple.com/us/podcast/samfunnsoppdraget/id6780780479";
 
 function formatDate(iso: string | null): string | null {
   if (!iso) return null;
@@ -18,29 +22,45 @@ function formatDate(iso: string | null): string | null {
   });
 }
 
-export default function PodcastSection({ episodes }: { episodes: Episode[] }) {
+export default function PodcastSection({
+  episodes,
+  settings,
+}: {
+  episodes: Episode[];
+  settings?: PodcastSettings;
+}) {
+  const label = settings?.label || "Podcast";
+  const heading = settings?.heading || "Lytt til podcasten Samfunnsoppdraget";
+  const intro =
+    settings?.intro ||
+    "Samtalar med ulike perspektiv om korleis ein best kan bidra til kommunane sitt samfunnsoppdrag. Nye episodar kjem automatisk.";
+  const spotifyUrl =
+    settings?.spotifyUrl || "https://open.spotify.com/show/033zfEoDsDQ30p0SrAv31v";
+  const appleUrl =
+    settings?.appleUrl ||
+    "https://podcasts.apple.com/us/podcast/samfunnsoppdraget/id6780780479";
+
   return (
     <section id="podkast" className="border-t border-[rgba(28,28,26,0.09)]">
       <div className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
         <div className="max-w-[720px]">
           <p className="text-xs font-semibold uppercase tracking-wider text-[#2D4233] mb-4">
-            Podcast
+            {label}
           </p>
           <h2
             className="text-3xl sm:text-4xl tracking-tight mb-4 text-[#18251D]"
             style={serif}
           >
-            Lytt til podcasten Samfunnsoppdraget
+            {heading}
           </h2>
           <p className="text-[#43565A] text-base sm:text-lg leading-relaxed mb-8">
-            Samtalar med ulike perspektiv om korleis ein best kan bidra til
-            kommunane sitt samfunnsoppdrag. Nye episodar kjem automatisk.
+            {intro}
           </p>
 
           <div className="flex flex-wrap gap-2.5 mb-12">
-            {SPOTIFY_URL && (
+            {spotifyUrl && (
               <a
-                href={SPOTIFY_URL}
+                href={spotifyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-2 rounded-full text-sm font-medium bg-[#2D4233] text-white hover:bg-[#3A5240] transition-colors"
@@ -48,9 +68,9 @@ export default function PodcastSection({ episodes }: { episodes: Episode[] }) {
                 Spotify
               </a>
             )}
-            {APPLE_URL && (
+            {appleUrl && (
               <a
-                href={APPLE_URL}
+                href={appleUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-2 rounded-full text-sm font-medium bg-[#2D4233] text-white hover:bg-[#3A5240] transition-colors"
@@ -62,7 +82,7 @@ export default function PodcastSection({ episodes }: { episodes: Episode[] }) {
               href={PODCAST_RSS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 rounded-full text-sm font-medium border border-[rgba(28,28,26,0.14)] text-[#18251D] hover:bg-[#E8E2D6] transition-colors"
+              className="px-4 py-2 rounded-full text-sm font-medium border border-[rgba(28,28,26,0.14)] text-[#18251D] hover:bg-[#D8E0D6] transition-colors"
             >
               RSS
             </a>
