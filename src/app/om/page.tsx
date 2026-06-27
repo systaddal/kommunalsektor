@@ -42,7 +42,7 @@ export default async function OmPage() {
     return (
       <div className="min-h-screen">
         <Nav />
-        <div className="flex items-center justify-center py-32 text-[#6B6860]">
+        <div className="flex items-center justify-center py-32 text-[#43565A]">
           <p>
             Innhald ikkje funne. Legg til «Om oss» i{" "}
             <a href="/studio" className="underline">
@@ -63,13 +63,13 @@ export default async function OmPage() {
       {/* Hero */}
       <section className="mx-auto max-w-5xl px-6 py-16 sm:py-24">
         <h1
-          className="text-3xl sm:text-4xl md:text-5xl tracking-tight text-[#1C1C1A] mb-8"
+          className="text-3xl sm:text-4xl md:text-5xl tracking-tight text-[#18251D] mb-8"
           style={serif}
         >
           {data.heading}
         </h1>
 
-        <div className="grid md:grid-cols-2 gap-10 md:gap-16 text-[#3a3a38] leading-[1.75] text-base">
+        <div className="grid md:grid-cols-2 gap-10 md:gap-16 text-[#18251D] leading-[1.75] text-base">
           <div className="space-y-5 prose-kvifor">
             {data.introLeft && <PortableText value={data.introLeft} />}
           </div>
@@ -84,7 +84,7 @@ export default async function OmPage() {
         <section className="border-t border-[rgba(28,28,26,0.09)]">
           <div className="mx-auto max-w-5xl px-6 py-16 sm:py-24">
             <h2
-              className="text-2xl sm:text-3xl tracking-tight mb-10 text-[#1C1C1A]"
+              className="text-2xl sm:text-3xl tracking-tight mb-10 text-[#18251D]"
               style={serif}
             >
               {data.partnararHeading}
@@ -94,7 +94,7 @@ export default async function OmPage() {
               {data.partnarar.map((partner) => (
                 <div
                   key={partner.name}
-                  className="border border-[rgba(28,28,26,0.09)] rounded-xl p-6 bg-white flex flex-col"
+                  className="border border-[rgba(28,28,26,0.09)] rounded-xl p-6 bg-[#FAF7EF] flex flex-col"
                 >
                   {partner.url ? (
                     <a
@@ -106,11 +106,11 @@ export default async function OmPage() {
                       {partner.name} &rarr;
                     </a>
                   ) : (
-                    <h3 className="text-base font-semibold text-[#1C1C1A]">
+                    <h3 className="text-base font-semibold text-[#18251D]">
                       {partner.name}
                     </h3>
                   )}
-                  <p className="mt-3 text-[#3a3a38] text-sm leading-relaxed flex-1">
+                  <p className="mt-3 text-[#43565A] text-sm leading-relaxed flex-1">
                     {partner.text}
                   </p>
                 </div>
@@ -125,7 +125,7 @@ export default async function OmPage() {
         <section className="border-t border-[rgba(28,28,26,0.09)]">
           <div className="mx-auto max-w-5xl px-6 py-16 sm:py-24">
             <h2
-              className="text-2xl sm:text-3xl tracking-tight mb-10 text-[#1C1C1A]"
+              className="text-2xl sm:text-3xl tracking-tight mb-10 text-[#18251D]"
               style={serif}
             >
               {data.offentlegeHeading}
@@ -135,12 +135,12 @@ export default async function OmPage() {
               {data.offentlegePartnarar.map((partner) => (
                 <div
                   key={partner.name}
-                  className="border border-[rgba(28,28,26,0.09)] rounded-xl p-6 bg-white flex flex-col"
+                  className="border border-[rgba(28,28,26,0.09)] rounded-xl p-6 bg-[#FAF7EF] flex flex-col"
                 >
-                  <h3 className="text-base font-semibold text-[#1C1C1A]">
+                  <h3 className="text-base font-semibold text-[#18251D]">
                     {partner.name}
                   </h3>
-                  <p className="mt-3 text-[#3a3a38] text-sm leading-relaxed flex-1">
+                  <p className="mt-3 text-[#43565A] text-sm leading-relaxed flex-1">
                     {partner.text}
                   </p>
                 </div>

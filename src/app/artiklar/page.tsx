@@ -46,12 +46,12 @@ export default async function ArtikkelListePage({
 
       <div className="mx-auto max-w-[720px] px-6 py-20 sm:py-28">
         <h1
-          className="text-3xl sm:text-4xl tracking-tight mb-4 text-[#1C1C1A]"
+          className="text-3xl sm:text-4xl tracking-tight mb-4 text-[#18251D]"
           style={{ fontFamily: "var(--font-serif), 'Fraunces', serif", fontWeight: 400 }}
         >
           Døme og beskrivingar
         </h1>
-        <p className="text-[#6B6860] text-base sm:text-lg mb-10 leading-relaxed">
+        <p className="text-[#43565A] text-base sm:text-lg mb-10 leading-relaxed">
           Artiklar, erfaringar og refleksjonar frå arbeidet med å gjere noko anna i kommunane.
         </p>
 
@@ -63,7 +63,7 @@ export default async function ArtikkelListePage({
               className={`px-3 py-1.5 rounded-full text-sm transition-colors ${
                 !tag
                   ? "bg-[#2D4233] text-white"
-                  : "bg-[#F8F6F1] text-[#6B6860] hover:bg-[#E8E2D6] border border-[rgba(28,28,26,0.09)]"
+                  : "bg-[#FAF7EF] text-[#43565A] hover:bg-[#E8E2D6] border border-[rgba(28,28,26,0.09)]"
               }`}
             >
               Alle
@@ -75,7 +75,7 @@ export default async function ArtikkelListePage({
                 className={`px-3 py-1.5 rounded-full text-sm transition-colors ${
                   tag === t
                     ? "bg-[#2D4233] text-white"
-                    : "bg-[#F8F6F1] text-[#6B6860] hover:bg-[#E8E2D6] border border-[rgba(28,28,26,0.09)]"
+                    : "bg-[#FAF7EF] text-[#43565A] hover:bg-[#E8E2D6] border border-[rgba(28,28,26,0.09)]"
                 }`}
               >
                 {capitalize(t)}
@@ -91,10 +91,10 @@ export default async function ArtikkelListePage({
               <Link
                 key={post._id}
                 href={`/artiklar/${post.slug?.current}`}
-                className="group block border border-[rgba(28,28,26,0.09)] rounded-xl overflow-hidden bg-white hover:shadow-[0_4px_14px_rgba(28,28,26,0.09)] transition-shadow"
+                className="group block border border-[rgba(28,28,26,0.09)] rounded-xl overflow-hidden bg-[#FAF7EF] hover:shadow-[0_4px_14px_rgba(28,28,26,0.09)] transition-shadow"
               >
                 {post.image && (
-                  <div className="aspect-[2.2/1] relative bg-[#F5F2EB]">
+                  <div className="aspect-[2.2/1] relative bg-[#FAF7EF]">
                     <Image
                       src={urlFor(post.image).width(800).height(360).url()}
                       alt={post.title}
@@ -105,7 +105,7 @@ export default async function ArtikkelListePage({
                 )}
                 <div className="p-6 sm:p-8">
                 {post.publishedAt && (
-                  <p className="text-xs text-[#9B9790] mb-2">
+                  <p className="text-xs text-[#6F7A73] mb-2">
                     {new Date(post.publishedAt).toLocaleDateString("nn-NO", {
                       year: "numeric",
                       month: "long",
@@ -113,11 +113,11 @@ export default async function ArtikkelListePage({
                     })}
                   </p>
                 )}
-                <h2 className="text-lg sm:text-xl font-medium text-[#1C1C1A] group-hover:text-[#2D4233] transition-colors">
+                <h2 className="text-lg sm:text-xl font-medium text-[#18251D] group-hover:text-[#2D4233] transition-colors">
                   {post.title}
                 </h2>
                 {post.summary && (
-                  <p className="mt-2 text-[#6B6860] text-sm sm:text-base leading-relaxed line-clamp-2">
+                  <p className="mt-2 text-[#43565A] text-sm sm:text-base leading-relaxed line-clamp-2">
                     {post.summary}
                   </p>
                 )}
@@ -126,7 +126,7 @@ export default async function ArtikkelListePage({
                     {post.tags.map((t: string) => (
                       <span
                         key={t}
-                        className="px-2 py-0.5 rounded-full text-xs bg-[#F8F6F1] text-[#6B6860]"
+                        className="px-2 py-0.5 rounded-full text-xs bg-[#FAF7EF] text-[#43565A]"
                       >
                         {capitalize(t)}
                       </span>
@@ -139,12 +139,12 @@ export default async function ArtikkelListePage({
           </div>
         ) : (
           <div className="text-center py-16">
-            <p className="text-[#6B6860] text-base">
+            <p className="text-[#43565A] text-base">
               {tag
                 ? `Ingen artiklar med emneord "${tag}" enno.`
                 : "Ingen artiklar enno."}
             </p>
-            <p className="text-[#9B9790] text-sm mt-2">
+            <p className="text-[#6F7A73] text-sm mt-2">
               Legg til artiklar i{" "}
               <Link href="/studio" className="underline text-[#2D4233]">
                 Sanity Studio

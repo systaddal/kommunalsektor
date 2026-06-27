@@ -32,14 +32,14 @@ export default function ContactForm() {
 
   if (status === "sent") {
     return (
-      <div className="bg-[#EEF5EE] border border-[#C8DEC8] rounded-2xl p-8 sm:p-10 text-center">
+      <div className="bg-[#D8E0D6] border border-[#B8C9B2] rounded-2xl p-8 sm:p-10 text-center">
         <p className="text-lg font-medium text-[#2D4233] mb-2">Takk for meldinga!</p>
-        <p className="text-sm text-[#3a3a38]">
+        <p className="text-sm text-[#43565A]">
           Me kjem tilbake til deg så snart me kan.
         </p>
         <button
           onClick={() => setStatus("idle")}
-          className="mt-6 text-sm text-[#6B6860] hover:text-[#1C1C1A] underline transition-colors"
+          className="mt-6 text-sm text-[#43565A] hover:text-[#18251D] underline transition-colors"
         >
           Send ei ny melding
         </button>
@@ -51,7 +51,7 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} className="space-y-5">
       <div className="grid sm:grid-cols-2 gap-5">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-[#1C1C1A] mb-1.5">
+          <label htmlFor="name" className="block text-sm font-medium text-[#18251D] mb-1.5">
             Namn
           </label>
           <input
@@ -59,12 +59,12 @@ export default function ContactForm() {
             id="name"
             name="name"
             required
-            className="w-full px-4 py-3 bg-white border border-[rgba(28,28,26,0.14)] rounded-xl text-sm text-[#1C1C1A] placeholder:text-[#B5B2AC] outline-none focus:border-[#2D4233] focus:ring-2 focus:ring-[rgba(45,66,51,0.1)] transition-all"
+            className="w-full px-4 py-3 bg-white border border-[rgba(28,28,26,0.14)] rounded-xl text-sm text-[#18251D] placeholder:text-[#B5B2AC] outline-none focus:border-[#2D4233] focus:ring-2 focus:ring-[rgba(45,66,51,0.1)] transition-all"
             placeholder="Ditt namn"
           />
         </div>
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-[#1C1C1A] mb-1.5">
+          <label htmlFor="email" className="block text-sm font-medium text-[#18251D] mb-1.5">
             E-post
           </label>
           <input
@@ -72,27 +72,27 @@ export default function ContactForm() {
             id="email"
             name="email"
             required
-            className="w-full px-4 py-3 bg-white border border-[rgba(28,28,26,0.14)] rounded-xl text-sm text-[#1C1C1A] placeholder:text-[#B5B2AC] outline-none focus:border-[#2D4233] focus:ring-2 focus:ring-[rgba(45,66,51,0.1)] transition-all"
+            className="w-full px-4 py-3 bg-white border border-[rgba(28,28,26,0.14)] rounded-xl text-sm text-[#18251D] placeholder:text-[#B5B2AC] outline-none focus:border-[#2D4233] focus:ring-2 focus:ring-[rgba(45,66,51,0.1)] transition-all"
             placeholder="din@epost.no"
           />
         </div>
       </div>
 
       <div>
-        <label htmlFor="org" className="block text-sm font-medium text-[#1C1C1A] mb-1.5">
+        <label htmlFor="org" className="block text-sm font-medium text-[#18251D] mb-1.5">
           Kommune / organisasjon
         </label>
         <input
           type="text"
           id="org"
           name="organization"
-          className="w-full px-4 py-3 bg-white border border-[rgba(28,28,26,0.14)] rounded-xl text-sm text-[#1C1C1A] placeholder:text-[#B5B2AC] outline-none focus:border-[#2D4233] focus:ring-2 focus:ring-[rgba(45,66,51,0.1)] transition-all"
+          className="w-full px-4 py-3 bg-white border border-[rgba(28,28,26,0.14)] rounded-xl text-sm text-[#18251D] placeholder:text-[#B5B2AC] outline-none focus:border-[#2D4233] focus:ring-2 focus:ring-[rgba(45,66,51,0.1)] transition-all"
           placeholder="Valfritt"
         />
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-medium text-[#1C1C1A] mb-1.5">
+        <label htmlFor="message" className="block text-sm font-medium text-[#18251D] mb-1.5">
           Melding
         </label>
         <textarea
@@ -100,7 +100,7 @@ export default function ContactForm() {
           name="message"
           required
           rows={5}
-          className="w-full px-4 py-3 bg-white border border-[rgba(28,28,26,0.14)] rounded-xl text-sm text-[#1C1C1A] placeholder:text-[#B5B2AC] outline-none focus:border-[#2D4233] focus:ring-2 focus:ring-[rgba(45,66,51,0.1)] transition-all resize-none"
+          className="w-full px-4 py-3 bg-white border border-[rgba(28,28,26,0.14)] rounded-xl text-sm text-[#18251D] placeholder:text-[#B5B2AC] outline-none focus:border-[#2D4233] focus:ring-2 focus:ring-[rgba(45,66,51,0.1)] transition-all resize-none"
           placeholder="Kva lurer du på?"
         />
       </div>

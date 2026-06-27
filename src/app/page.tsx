@@ -79,17 +79,8 @@ function formatDate(iso?: string): string | null {
 
 function Hero({ data }: { data: Frontpage }) {
   return (
-    <section className="relative overflow-hidden">
-      <svg
-        viewBox="0 0 135 171"
-        aria-hidden="true"
-        fill="currentColor"
-        className="pointer-events-none absolute -right-10 top-16 w-[320px] h-auto opacity-[0.05] text-[#2D4233]"
-      >
-        <path d="M135 0V62.6113C135 118.177 74.445 166.696 67.5 171C60.555 166.696 0.000299323 118.177 0 62.6113V0H135Z" />
-      </svg>
-
-      <div className="relative mx-auto max-w-3xl px-6 py-24 sm:py-28 text-center">
+    <section>
+      <div className="mx-auto max-w-3xl px-6 py-24 sm:py-28 text-center">
         <div className="flex justify-center mb-6">
           <span
             className="inline-flex items-center gap-2 rounded-full bg-[#D8E0D6] px-4 py-1.5 text-xs tracking-wide text-[#2D4233]"

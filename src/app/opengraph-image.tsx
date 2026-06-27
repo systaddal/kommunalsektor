@@ -10,7 +10,7 @@ export default function OgImage() {
     (
       <div
         style={{
-          background: "#FAF9F6",
+          background: "#F5F1E8",
           width: "100%",
           height: "100%",
           display: "flex",
@@ -35,7 +35,7 @@ export default function OgImage() {
             marginTop: 40,
             fontSize: 52,
             fontWeight: 400,
-            color: "#1C1C1A",
+            color: "#18251D",
             textAlign: "center",
             lineHeight: 1.2,
             maxWidth: 800,
@@ -48,7 +48,7 @@ export default function OgImage() {
           style={{
             marginTop: 24,
             fontSize: 22,
-            color: "#6B6860",
+            color: "#43565A",
             textAlign: "center",
             lineHeight: 1.6,
             maxWidth: 640,
@@ -62,7 +62,7 @@ export default function OgImage() {
             position: "absolute",
             bottom: 48,
             fontSize: 16,
-            color: "#9B9790",
+            color: "#6F7A73",
             letterSpacing: "0.05em",
           }}
         >

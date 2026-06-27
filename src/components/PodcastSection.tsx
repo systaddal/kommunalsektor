@@ -27,12 +27,12 @@ export default function PodcastSection({ episodes }: { episodes: Episode[] }) {
             Podcast
           </p>
           <h2
-            className="text-3xl sm:text-4xl tracking-tight mb-4 text-[#1C1C1A]"
+            className="text-3xl sm:text-4xl tracking-tight mb-4 text-[#18251D]"
             style={serif}
           >
             Lytt til podcasten Samfunnsoppdraget
           </h2>
-          <p className="text-[#6B6860] text-base sm:text-lg leading-relaxed mb-8">
+          <p className="text-[#43565A] text-base sm:text-lg leading-relaxed mb-8">
             Samtalar med ulike perspektiv om korleis ein best kan bidra til
             kommunane sitt samfunnsoppdrag. Nye episodar kjem automatisk.
           </p>
@@ -62,7 +62,7 @@ export default function PodcastSection({ episodes }: { episodes: Episode[] }) {
               href={PODCAST_RSS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 rounded-full text-sm font-medium border border-[rgba(28,28,26,0.14)] text-[#1C1C1A] hover:bg-[#E8E2D6] transition-colors"
+              className="px-4 py-2 rounded-full text-sm font-medium border border-[rgba(28,28,26,0.14)] text-[#18251D] hover:bg-[#E8E2D6] transition-colors"
             >
               RSS
             </a>
@@ -74,9 +74,9 @@ export default function PodcastSection({ episodes }: { episodes: Episode[] }) {
             {episodes.map((ep) => (
               <article
                 key={ep.id}
-                className="border border-[rgba(28,28,26,0.09)] rounded-xl bg-white p-6 sm:p-8"
+                className="border border-[rgba(28,28,26,0.09)] rounded-xl bg-[#FAF7EF] p-6 sm:p-8"
               >
-                <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-[#9B9790] mb-2">
+                <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-[#6F7A73] mb-2">
                   {ep.episode != null && <span>Episode {ep.episode}</span>}
                   {formatDate(ep.pubDate) && (
                     <>
@@ -91,11 +91,11 @@ export default function PodcastSection({ episodes }: { episodes: Episode[] }) {
                     </>
                   )}
                 </div>
-                <h3 className="text-lg sm:text-xl font-medium text-[#1C1C1A] mb-2">
+                <h3 className="text-lg sm:text-xl font-medium text-[#18251D] mb-2">
                   {ep.title}
                 </h3>
                 {ep.description && (
-                  <p className="text-[#6B6860] text-sm sm:text-base leading-relaxed mb-4 line-clamp-3">
+                  <p className="text-[#43565A] text-sm sm:text-base leading-relaxed mb-4 line-clamp-3">
                     {ep.description}
                   </p>
                 )}
@@ -109,7 +109,7 @@ export default function PodcastSection({ episodes }: { episodes: Episode[] }) {
             ))}
           </div>
         ) : (
-          <p className="text-[#6B6860] text-base">
+          <p className="text-[#43565A] text-base">
             Episodane er på veg. Abonner via lenkene over.
           </p>
         )}

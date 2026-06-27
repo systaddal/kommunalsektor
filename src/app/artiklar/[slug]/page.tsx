@@ -75,7 +75,7 @@ export default async function ArtikkelPage({
       {/* Hero image */}
       {post.image && (
         <div className="mx-auto max-w-5xl px-6 mt-4">
-          <div className="aspect-[2.4/1] relative rounded-2xl overflow-hidden bg-[#F5F2EB]">
+          <div className="aspect-[2.4/1] relative rounded-2xl overflow-hidden bg-[#FAF7EF]">
             <Image
               src={urlFor(post.image).width(1200).height(500).url()}
               alt={post.title}
@@ -91,7 +91,7 @@ export default async function ArtikkelPage({
         {/* Back link */}
         <Link
           href="/artiklar"
-          className="text-sm text-[#6B6860] hover:text-[#1C1C1A] transition-colors inline-flex items-center gap-1.5 mb-8"
+          className="text-sm text-[#43565A] hover:text-[#18251D] transition-colors inline-flex items-center gap-1.5 mb-8"
         >
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
             <path d="M10 3L5 8L10 13" />
@@ -102,7 +102,7 @@ export default async function ArtikkelPage({
         {/* Date and tags */}
         <div className="flex flex-wrap items-center gap-3 mb-4">
           {post.publishedAt && (
-            <p className="text-sm text-[#9B9790]">
+            <p className="text-sm text-[#6F7A73]">
               {new Date(post.publishedAt).toLocaleDateString("nn-NO", {
                 year: "numeric",
                 month: "long",
@@ -116,7 +116,7 @@ export default async function ArtikkelPage({
                 <Link
                   key={t}
                   href={`/artiklar?tag=${encodeURIComponent(t)}`}
-                  className="px-2 py-0.5 rounded-full text-xs bg-[#EEF5EE] text-[#2D4233] hover:bg-[#C8DEC8] transition-colors"
+                  className="px-2 py-0.5 rounded-full text-xs bg-[#D8E0D6] text-[#2D4233] hover:bg-[#B8C9B2] transition-colors"
                 >
                   {capitalize(t)}
                 </Link>
@@ -127,7 +127,7 @@ export default async function ArtikkelPage({
 
         {/* Title */}
         <h1
-          className="text-3xl sm:text-4xl tracking-tight mb-6 text-[#1C1C1A] leading-tight"
+          className="text-3xl sm:text-4xl tracking-tight mb-6 text-[#18251D] leading-tight"
           style={serif}
         >
           {post.title}
@@ -135,14 +135,14 @@ export default async function ArtikkelPage({
 
         {/* Summary */}
         {post.summary && (
-          <p className="text-lg text-[#6B6860] leading-relaxed mb-10 border-l-2 border-[#C8DEC8] pl-5">
+          <p className="text-lg text-[#43565A] leading-relaxed mb-10 border-l-2 border-[#B8C9B2] pl-5">
             {post.summary}
           </p>
         )}
 
         {/* Body */}
         {post.body && (
-          <div className="prose prose-gray max-w-none text-[#3a3a38] leading-[1.75]">
+          <div className="prose prose-gray max-w-none text-[#18251D] leading-[1.75]">
             <PortableText value={post.body} />
           </div>
         )}
