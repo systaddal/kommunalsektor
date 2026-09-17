@@ -117,6 +117,47 @@ function parseItem(block: string): Episode {
   };
 }
 
+function normalize(s: string): string {
+  return s
+    .toLowerCase()
+    .replace(/[\u2013\u2014]/g, "-")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/** Finn episoden som høyrer til ein artikkel, på guid eller tittel. */
+export async function findEpisode(ref: string): Promise<Episode | null> {
+  const needle = normalize(ref);
+  if (!needle) return null;
+  const episodes = await getEpisodes();
+  return (
+    episodes.find((e) => normalize(e.id) === needle) ??
+    episodes.find((e) => normalize(e.title) === needle) ??
+    episodes.find((e) => normalize(e.title).includes(needle)) ??
+    null
+  );
+}
+
+const APPLE_SHOW_ID = "6780780479";
+
+/** Hentar episodelenkja hos Apple Podcasts, matcha på guid. */
+export async function getAppleEpisodeUrl(guid: string): Promise<string | null> {
+  try {
+    const res = await fetch(
+      `https://itunes.apple.com/lookup?id=${APPLE_SHOW_ID}&entity=podcastEpisode&limit=200`,
+      { next: { revalidate: 3600 } },
+    );
+    if (!res.ok) return null;
+    const data = (await res.json()) as {
+      results?: { episodeGuid?: string; trackViewUrl?: string }[];
+    };
+    const hit = data.results?.find((r) => r.episodeGuid === guid);
+    return hit?.trackViewUrl?.replace(/[?&]uo=\d+$/, "") ?? null;
+  } catch {
+    return null;
+  }
+}
+
 export async function getEpisodes(limit?: number): Promise<Episode[]> {
   try {
     const res = await fetch(PODCAST_RSS_URL, { next: { revalidate: 3600 } });

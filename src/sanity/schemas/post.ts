@@ -45,6 +45,27 @@ export default defineType({
       type: "datetime",
     }),
     defineField({
+      name: "podcastEpisode",
+      title: "Podcastepisode",
+      type: "string",
+      description:
+        "Valfritt. Lim inn tittelen på episoden slik han står i Samfunnsoppdraget-feeden (t.d. «Andreas Wettre - Å leie det du ikkje kan styre»). Då får artikkelen ein avspelar og lenkjer til Spotify og Apple.",
+    }),
+    defineField({
+      name: "episodeSpotifyUrl",
+      title: "Spotify-lenke til episoden",
+      type: "url",
+      description: "Valfritt. Står han tom, peikar knappen til podcasten på Spotify.",
+      hidden: ({ document }) => !document?.podcastEpisode,
+    }),
+    defineField({
+      name: "episodeAppleUrl",
+      title: "Apple Podcasts-lenke til episoden",
+      type: "url",
+      description: "Valfritt. Står han tom, blir episodelenkja henta automatisk frå Apple.",
+      hidden: ({ document }) => !document?.podcastEpisode,
+    }),
+    defineField({
       name: "image",
       title: "Bilete",
       type: "image",

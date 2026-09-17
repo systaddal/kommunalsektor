@@ -7,6 +7,8 @@ import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
 import { urlFor } from "@/sanity/lib/image";
 import { notFound } from "next/navigation";
+import EpisodePlayer from "@/components/EpisodePlayer";
+import { findEpisode, getAppleEpisodeUrl } from "@/lib/podcast";
 
 const serif = {
   fontFamily: "var(--font-serif), 'Fraunces', serif",
@@ -20,7 +22,9 @@ function capitalize(s: string) {
 async function getPost(slug: string) {
   return client.fetch(
     `*[_type == "post" && slug.current == $slug][0] {
-      _id, title, summary, body, tags, publishedAt, image
+      _id, title, summary, body, tags, publishedAt, image,
+      podcastEpisode, episodeSpotifyUrl, episodeAppleUrl,
+      "podcast": *[_id == "podcastSettings"][0]{ spotifyUrl, appleUrl }
     }`,
     { slug }
   );
@@ -67,6 +71,18 @@ export default async function ArtikkelPage({
   const post = await getPost(slug);
 
   if (!post) notFound();
+
+  const episode = post.podcastEpisode
+    ? await findEpisode(post.podcastEpisode)
+    : null;
+  const appleUrl = episode
+    ? post.episodeAppleUrl ||
+      (await getAppleEpisodeUrl(episode.id)) ||
+      post.podcast?.appleUrl
+    : null;
+  const spotifyUrl = episode
+    ? post.episodeSpotifyUrl || post.podcast?.spotifyUrl
+    : null;
 
   return (
     <div className="min-h-screen">
@@ -138,6 +154,15 @@ export default async function ArtikkelPage({
           <p className="text-lg text-[#43565A] leading-relaxed mb-10 border-l-2 border-[#B8C9B2] pl-5">
             {post.summary}
           </p>
+        )}
+
+        {/* Podcast episode */}
+        {episode && (
+          <EpisodePlayer
+            episode={episode}
+            spotifyUrl={spotifyUrl}
+            appleUrl={appleUrl}
+          />
         )}
 
         {/* Body */}
