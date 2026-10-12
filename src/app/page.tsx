@@ -132,10 +132,10 @@ function Hero({ data }: { data: Frontpage }) {
 
         <div className="mt-10 flex flex-wrap gap-4 justify-center">
           <Link
-            href="#artiklar"
+            href="/fellesskap"
             className="inline-flex items-center gap-2 bg-[#C7653A] text-[#FAF7EF] px-6 py-3 rounded-full text-sm font-medium hover:bg-[#A8542F] transition-colors"
           >
-            {data.heroPrimaryLabel || "Les meir"}
+            {data.heroPrimaryLabel || "Bli med i fellesskapet"}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M5 12h14M13 6l6 6-6 6" />
             </svg>

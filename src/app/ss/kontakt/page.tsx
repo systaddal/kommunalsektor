@@ -10,11 +10,11 @@ const MEETINGS_SRC =
 export const metadata: Metadata = {
   title: "Kontakt",
   description:
-    "Book eit innsiktsmøte med Selseng & Systaddal, eller send oss nokre ord.",
+    "Book ein første prat med Selseng & Systaddal, eller send oss nokre ord.",
   openGraph: {
     title: "Kontakt — Selseng & Systaddal",
     description:
-      "Book eit innsiktsmøte med Selseng & Systaddal, eller send oss nokre ord.",
+      "Book ein første prat med Selseng & Systaddal, eller send oss nokre ord.",
     url: "https://selsengsystaddal.no/kontakt",
   },
 };
@@ -28,8 +28,8 @@ export default function SSKontaktPage() {
         </div>
 
         <p className="text-[#2F2B26] leading-[1.7] text-lg tracking-tight max-w-xl mb-12">
-          Me tar gjerne ein uforpliktande prat om kva me kan bidra med hjå dykk.
-          Book eit møte direkte, eller send oss nokre ord.
+          Fortel oss kva de står i. Me lyttar først, og seier ærleg om me kan
+          vere til nytte. Book ein prat direkte, eller send oss nokre ord.
         </p>
 
         {/* To vegar inn: book eller skriv */}
@@ -37,7 +37,7 @@ export default function SSKontaktPage() {
           {/* Book eit møte */}
           <div className="flex flex-col rounded-2xl border border-[#E4DBCB] bg-[#FAF8F3] p-8">
             <h2 className="text-xl font-medium text-[#2F2B26] tracking-tight mb-2">
-              Book eit innsiktsmøte
+              Book ein første prat
             </h2>
             <p className="text-sm text-[#6B6860] leading-relaxed mb-7 flex-1">
               Finn eit tidspunkt som passar. Kalenderen opnar seg her på sida.

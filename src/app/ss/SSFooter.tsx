@@ -14,10 +14,11 @@ export default function SSFooter() {
           Interessert?
         </h2>
         <p className="text-sm text-[#938C7F] leading-relaxed mb-5">
-          Me tar gjerne ein uforpliktande prat om kva me kan bidra med hjå dykk.
+          Fortel oss kva de står i. Me lyttar først, og seier ærleg om me kan
+          vere til nytte.
         </p>
         <ModalButton
-          label="Book eit innsiktsmøte"
+          label="Book ein første prat"
           panelClassName="max-w-4xl"
           className="inline-flex items-center text-sm text-[#2F2B26] bg-[#FAF8F3] rounded-full px-5 py-2.5 hover:bg-[#ECE4D6] transition-colors cursor-pointer"
         >
@@ -25,6 +26,18 @@ export default function SSFooter() {
             <HubSpotMeetings src={MEETINGS_SRC} />
           </div>
         </ModalButton>
+        <p className="text-sm text-[#938C7F] leading-relaxed mt-6">
+          Ikkje klar for ein prat enno? Bli med i{" "}
+          <a
+            href="https://handlingsrommet.selsengsystaddal.no"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#F6F1E8] underline underline-offset-4 decoration-[#A65F3D] hover:decoration-[#F6F1E8]"
+          >
+            fellesskapet Handlingsrommet
+          </a>
+          . Det er gratis.
+        </p>
         <p className="text-xs text-[#6B6860] mt-10">
           &copy; {new Date().getFullYear()} Selseng & Systaddal AS
         </p>

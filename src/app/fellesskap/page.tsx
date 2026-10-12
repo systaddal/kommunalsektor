@@ -8,13 +8,14 @@ const serif = {
   fontWeight: 400 as const,
 };
 
-const CIRCLE_URL = "https://selsengsystaddal.circle.so/s/kommunalsektor-no";
+const CIRCLE_URL = "https://handlingsrommet.selsengsystaddal.no";
 
 const fallbackRooms = [
-  { namn: "Del og lær", tekst: "Spør, del erfaringar og lær av andre som står i kommunal kvardag." },
-  { namn: "Inspirasjon", tekst: "Del det gode arbeidet ditt, og hent idéar frå andre kommunar." },
-  { namn: "Ressursar", tekst: "Verktøy, malar og døme du kan ta rett inn i neste møte." },
-  { namn: "Arrangement", tekst: "Webinar, samlingar og Kommunefredag. Møt folk som vil det same." },
+  { namn: "Start her", tekst: "Kva fellesskapet er, og eitt første steg du kan ta med ein gong." },
+  { namn: "Kva prøver du å få til?", tekst: "Fortel kva du står i akkurat no, og få hjelp av folk som har stått i noko liknande." },
+  { namn: "Grep som verka", tekst: "Praksis frå folk som gjer jobben: situasjonen, grepet, fallgruva og spørsmålet du sit att med." },
+  { namn: "Verktøykassa", tekst: "Diagnosespørsmåla, kapasitetskorta, opptak og malar du kan ta rett inn i neste møte." },
+  { namn: "Fredagsøkta", tekst: "Ei samling annakvar veke. Møt folk som vil det same." },
 ];
 
 type Room = { namn?: string; tekst?: string };
@@ -65,10 +66,10 @@ export default async function FellesskapPage() {
   const primaryLabel = d?.primaryLabel || "Bli medlem";
   const primaryUrl = d?.primaryUrl || CIRCLE_URL;
   const secondaryLabel = d?.secondaryLabel || "Spør oss først";
-  const roomsHeading = d?.roomsHeading || "Fire rom, éin stad å dele";
+  const roomsHeading = d?.roomsHeading || "Fem rom, éin stad å dele";
   const roomsIntro =
     d?.roomsIntro ||
-    "Fellesskapet er delt i fire rom, så det er lett å finne fram til det du treng der og då.";
+    "Fellesskapet heiter Handlingsrommet og har fem rom, så det er lett å finne fram til det du treng der og då.";
   const rooms = d?.rooms && d.rooms.length > 0 ? d.rooms : fallbackRooms;
   const bottomHeading = d?.bottomHeading || "Klar for å dele?";
   const bottomText =
