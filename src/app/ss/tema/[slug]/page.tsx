@@ -76,7 +76,7 @@ export default async function SSTemaSide({
     <>
       <section className="px-6 sm:px-10 pt-14 sm:pt-20 pb-16 sm:pb-20">
         <div className="max-w-3xl mx-auto">
-          <SSTag>Me jobbar med</SSTag>
+          <SSTag>Slik jobbar me</SSTag>
 
           <div className="flex items-start gap-5 mt-8">
             <SSHandlingsromMerke posisjon={tema.posisjon} />

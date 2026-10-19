@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "KommunalSektor — Eit nytt operativsystem for kommunane";
+export const alt = "KommunalSektor — Handlingsrommet finst alt";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -41,7 +41,7 @@ export default function OgImage() {
             maxWidth: 800,
           }}
         >
-          Eit nytt operativsystem for kommunane
+          Handlingsrommet finst alt
         </div>
 
         <div

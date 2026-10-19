@@ -102,6 +102,40 @@ export default defineType({
       options: { layout: "tags" },
     }),
     defineField({
+      name: "effektKort",
+      title: "Effektane med forklaring",
+      type: "array",
+      group: "bolk1",
+      description:
+        "Dei fem effektane, i fast rekkjefølgje. Står øvst, rett under ingressen. Erstattar lista «Effektar» når ho er fylt ut.",
+      of: [
+        {
+          type: "object",
+          name: "effektKortItem",
+          fields: [
+            { name: "tittel", title: "Effekt", type: "string" },
+            { name: "tekst", title: "Kva det betyr i kvardagen", type: "text", rows: 3 },
+          ],
+          preview: { select: { title: "tittel", subtitle: "tekst" } },
+        },
+      ],
+    }),
+    defineField({
+      name: "omradeTittel",
+      title: "Merkelapp over områda",
+      type: "string",
+      group: "bolk1",
+      description: "Områda står diskret under effektane, som referanse.",
+      initialValue: "For deg som vil etterprøve oss",
+    }),
+    defineField({
+      name: "omradeIngress",
+      title: "Ingress over områda",
+      type: "text",
+      rows: 2,
+      group: "bolk1",
+    }),
+    defineField({
       name: "ctaTekst",
       title: "Tekst på knappen",
       type: "string",

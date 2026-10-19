@@ -2,18 +2,14 @@ import { PortableText } from "next-sanity";
 import { client } from "@/sanity/lib/client";
 import { ssPortableText } from "./ssPortableText";
 import SSAnimatedHeadline from "./SSAnimatedHeadline";
-import SSHandlingsromMerke from "./SSHandlingsromMerke";
 import SSLenke from "./SSLenke";
 import SSSubstack from "./SSSubstack";
-
-type Posisjon = "topp" | "hogre" | "botn" | "venstre";
 
 type Tema = {
   _id: string;
   tittel: string;
   slug: { current: string };
-  posisjon: Posisjon;
-  kortTekst: string;
+  kortTekst?: string;
 };
 
 type Framside = {
@@ -28,6 +24,9 @@ type Framside = {
   kjerneTekst?: string;
   effektTittel?: string;
   effektar?: string[];
+  effektKort?: { _key: string; tittel?: string; tekst?: string }[];
+  omradeTittel?: string;
+  omradeIngress?: string;
   ctaTekst?: string;
   substackTittel?: string;
   substackIngress?: string;
@@ -57,6 +56,10 @@ const merkelapp =
 
 export default async function SSHome() {
   const { side, tema } = await hentData();
+  const effektKort =
+    side?.effektKort && side.effektKort.length > 0
+      ? side.effektKort
+      : (side?.effektar ?? []).map((e) => ({ _key: e, tittel: e, tekst: undefined }));
 
   if (!side) {
     return (
@@ -118,76 +121,31 @@ export default async function SSHome() {
             </div>
           )}
 
-          {tema.length > 0 && (
-            <>
-              {side.temaTittel && (
-                <p className={`${merkelapp} mt-14 mb-5`}>{side.temaTittel}</p>
-              )}
-              <div className="ss-kryss">
-                <div className="ss-kryss__kjerne flex flex-col justify-center rounded-2xl bg-[#314D3C] text-[#F6F1E8] p-5 text-center">
-                  <span className="text-[10.5px] uppercase tracking-[0.18em] text-[#B9B0A2]">
-                    Kjernen
-                  </span>
-                  {side.kjerneTittel && (
-                    <span
-                      className="text-[#FAF8F3] font-medium text-lg tracking-tight mt-2"
-                      style={{
-                        fontFamily: "var(--font-serif-ss), 'Source Serif 4', serif",
-                      }}
-                    >
-                      {side.kjerneTittel}
-                    </span>
-                  )}
-                  {side.kjerneTekst && (
-                    <span className="text-[#DDD1BE] text-[13px] leading-relaxed mt-2">
-                      {side.kjerneTekst}
-                    </span>
-                  )}
-                </div>
-
-                {tema.map((t) => (
-                  <SSLenke
-                    key={t._id}
-                    href={`/ss/tema/${t.slug.current}`}
-                    className={`ss-kryss__${t.posisjon} group flex flex-col rounded-2xl border border-[#E4DBCB] bg-[#FAF8F3] p-5 hover:border-[#CFC5B2] hover:shadow-sm transition-all`}
-                  >
-                    <SSHandlingsromMerke posisjon={t.posisjon} />
-                    <h3 className="text-[#2F2B26] font-medium text-[17px] tracking-tight mt-4">
-                      {t.tittel}
-                    </h3>
-                    <p className="text-[#6B6860] text-sm leading-relaxed mt-2">
-                      {t.kortTekst}
-                    </p>
-                    <span className="text-[#A65F3D] text-sm font-medium mt-4">
-                      Les meir{" "}
-                      <span
-                        aria-hidden
-                        className="inline-block transition-transform group-hover:translate-x-1"
-                      >
-                        &rarr;
-                      </span>
-                    </span>
-                  </SSLenke>
-                ))}
-              </div>
-            </>
-          )}
-
-          {side.effektar && side.effektar.length > 0 && (
+          {effektKort.length > 0 && (
             <>
               {side.effektTittel && (
-                <p className={`${merkelapp} mt-16 mb-5`}>{side.effektTittel}</p>
+                <p className={`${merkelapp} mt-14 mb-5`}>{side.effektTittel}</p>
               )}
-              <ul className="grid gap-x-6 gap-y-5 grid-cols-2 sm:grid-cols-3">
-                {side.effektar.map((e) => (
+              <ol className="grid gap-x-8 gap-y-8 sm:grid-cols-2">
+                {effektKort.map((e, i) => (
                   <li
-                    key={e}
-                    className="border-t-2 border-[#A65F3D] pt-3 text-[#2F2B26] font-medium leading-snug tracking-tight"
+                    key={e._key}
+                    className="border-t-2 border-[#A65F3D] pt-3"
                   >
-                    {e}
+                    <span className="text-[12px] tabular-nums text-[#A65F3D] font-medium">
+                      {i + 1}
+                    </span>
+                    <h3 className="text-[#2F2B26] font-medium text-lg leading-snug tracking-tight mt-1">
+                      {e.tittel}
+                    </h3>
+                    {e.tekst && (
+                      <p className="text-[#6B6860] text-[15px] leading-relaxed mt-2">
+                        {e.tekst}
+                      </p>
+                    )}
                   </li>
                 ))}
-              </ul>
+              </ol>
             </>
           )}
 
@@ -197,6 +155,37 @@ export default async function SSHome() {
           >
             {side.ctaTekst ?? "Kontakt oss"} <span aria-hidden>&rarr;</span>
           </SSLenke>
+
+          {tema.length > 0 && (
+            <div className="mt-20 pt-8 border-t border-[#E4DBCB]">
+              <p className={`${merkelapp} mb-3`}>
+                {side.omradeTittel ?? "For deg som vil etterprøve oss"}
+              </p>
+              {side.omradeIngress && (
+                <p className="text-[#6B6860] text-[15px] leading-relaxed max-w-2xl">
+                  {side.omradeIngress}
+                </p>
+              )}
+              <ul className="mt-4 grid gap-y-2 sm:grid-cols-2 sm:gap-x-8">
+                {tema.map((t) => (
+                  <li key={t._id}>
+                    <SSLenke
+                      href={`/ss/tema/${t.slug.current}`}
+                      className="group inline-flex items-baseline gap-1.5 text-[#2F2B26] text-[15px] hover:text-[#A65F3D] transition-colors"
+                    >
+                      {t.tittel}
+                      <span
+                        aria-hidden
+                        className="text-[#A65F3D] inline-block transition-transform group-hover:translate-x-1"
+                      >
+                        &rarr;
+                      </span>
+                    </SSLenke>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </section>
 

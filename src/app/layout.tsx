@@ -24,7 +24,7 @@ const plexMono = IBM_Plex_Mono({
   display: "swap",
 });
 
-const siteTitle = "KommunalSektor — Eit nytt operativsystem for kommunane";
+const siteTitle = "KommunalSektor — Handlingsrommet finst alt";
 const siteDescription =
   "Erfaringar, rammeverk og inspirasjon for kommunar som vil gjere noko anna. Frå praksis, ikkje skrivebordsøvingar.";
 
