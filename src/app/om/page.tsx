@@ -7,7 +7,7 @@ import { client } from "@/sanity/lib/client";
 
 export const metadata: Metadata = {
   title: "Om oss",
-  description: "Kven vi er, kva vi trur på, og kvifor KommunalSektor finst.",
+  description: "Kven me er, kva me trur på, og kvifor KommunalSektor finst.",
 };
 
 const serif = {

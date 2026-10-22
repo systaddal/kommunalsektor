@@ -56,7 +56,7 @@ export default function SSKontaktPage() {
           {/* Skriv ein melding */}
           <div className="flex flex-col rounded-2xl border border-[#E4DBCB] bg-[#FAF8F3] p-8">
             <h2 className="text-xl font-medium text-[#2F2B26] tracking-tight mb-2">
-              Skriv ein melding
+              Skriv ei melding
             </h2>
             <p className="text-sm text-[#6B6860] leading-relaxed mb-7 flex-1">
               Har du eit spørsmål eller noko på hjartet? Send oss nokre ord, så

@@ -26,7 +26,7 @@ const plexMono = IBM_Plex_Mono({
 
 const siteTitle = "KommunalSektor — Handlingsrommet finst alt";
 const siteDescription =
-  "Erfaringar, rammeverk og inspirasjon for kommunar som vil gjere noko anna. Frå praksis, ikkje skrivebordsøvingar.";
+  "Erfaringar, rammeverk og inspirasjon frå praksis, for kommunar som vil gjere noko anna.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(

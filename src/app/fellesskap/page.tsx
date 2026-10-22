@@ -62,14 +62,14 @@ export default async function FellesskapPage() {
   const heading = d?.heading || "Bli med i fellesskapet";
   const intro =
     d?.intro ||
-    "Eit lukka praksisfellesskap for folk som vil utvikle kommunal sektor innanfrå. Her deler me erfaringar, lærer av kvarandre og går frå prat til handling.";
+    "Eit praksisfellesskap for folk som vil utvikle kommunal sektor innanfrå. Her deler me erfaringar, lærer av kvarandre og går frå prat til handling.";
   const primaryLabel = d?.primaryLabel || "Bli medlem";
   const primaryUrl = d?.primaryUrl || CIRCLE_URL;
   const secondaryLabel = d?.secondaryLabel || "Spør oss først";
   const roomsHeading = d?.roomsHeading || "Fem rom, éin stad å dele";
   const roomsIntro =
     d?.roomsIntro ||
-    "Fellesskapet heiter Handlingsrommet og har fem rom, så det er lett å finne fram til det du treng der og då.";
+    "Fellesskapet heiter Handlingsrommet og har fem rom, slik at det er lett å finne fram til det du treng.";
   const rooms = d?.rooms && d.rooms.length > 0 ? d.rooms : fallbackRooms;
   const bottomHeading = d?.bottomHeading || "Klar for å dele?";
   const bottomText =
