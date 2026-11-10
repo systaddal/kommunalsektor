@@ -101,6 +101,13 @@ export default async function Footer() {
             >
               Selseng &amp; Systaddal AS
             </a>
+            {" · "}
+            <Link
+              href="/personvern"
+              className="text-white/40 hover:text-white/70 underline-offset-2 hover:underline transition-colors"
+            >
+              Personvern
+            </Link>
           </p>
         </div>
       </div>
