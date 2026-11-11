@@ -9,7 +9,7 @@ import type { ReactNode } from "react";
  * («Nivå 1 · Behandlingsprotokollar»).
  */
 
-export const SIST_ENDRA = "10. november 2026";
+export const SIST_ENDRA = "11. november 2026";
 
 type Farger = {
   tekst: string;
@@ -132,7 +132,12 @@ export default function PersonvernInnhald({
           I Kunderommet og andre arbeidsrom behandlar me opplysningar på vegner
           av kunden. Då er kunden behandlingsansvarleg, og me er databehandlar
           etter ein databehandlaravtale. Har du spørsmål om opplysningar der,
-          kan du kontakte arbeidsgjevaren din eller oss.
+          kan du kontakte arbeidsgjevaren din eller oss. Kva som blir lagra i
+          Kunderommet, står på{" "}
+          <a href="https://rom.selsengsystaddal.no/personvern" {...a}>
+            rom.selsengsystaddal.no/personvern
+          </a>
+          .
         </p>
 
         <h3 className="font-medium mt-6">Podkastar og gjestar</h3>
@@ -141,7 +146,9 @@ export default function PersonvernInnhald({
           stemme, eventuelt bilete og video, og korrespondansen med deg. Me
           førebur samtalen ut frå det du og organisasjonen din har gjort
           offentleg. Grunnlaget er avtalen med deg om å vere med, og du
-          godkjenner episoden før den blir publisert. Publiserte episodar ligg
+          godkjenner episoden før den blir publisert. Godkjenninga gjer du i
+          Lytterommet eller på e-post, og me tek vare på den saman med
+          episoden. Publiserte episodar ligg
           ute så lenge podkasten finst. Råopptak og førebuinga slettar me tolv
           månader etter at episoden er publisert.
         </p>
@@ -161,6 +168,14 @@ export default function PersonvernInnhald({
           Analytics gir oss same slags samla tal, òg utan informasjonskapslar.
           Grunnlaget er vår berettiga interesse i å vite kva innhald som blir
           lese. Me brukar tala berre samla.
+        </p>
+      </Bolk>
+
+      <Bolk tittel="Må du gi oss opplysningar?" farger={farger}>
+        <p>
+          Nei. Men utan kontaktinformasjon kan me ikkje svare deg, og utan
+          e-postadresse kan me ikkje sende deg nyheitsbrev. Me tek ingen
+          automatiserte avgjerder om deg, og me lagar ikkje profilar.
         </p>
       </Bolk>
 
@@ -232,6 +247,7 @@ export default function PersonvernInnhald({
           <li>Notion og Slack: interne notat, oppgåver og varsel</li>
           <li>Resend: e-post som arbeidsromma sender</li>
           <li>Riverside: opptak og redigering av podkastar</li>
+          <li>Spotify for Creators: publisering av podkastane</li>
           <li>Anthropic (Claude) og OpenAI (ChatGPT): KI-verktøy med databehandlaravtale, utan trening på dataa våre</li>
           <li>Sanity: innhaldet på nettsidene</li>
           <li>Substack og Circle: nyheitsbrev og fellesskapet Handlingsrommet</li>
