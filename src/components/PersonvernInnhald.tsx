@@ -145,10 +145,17 @@ export default function PersonvernInnhald({
           Er du gjest i ein av podkastane våre, behandlar me namn, rolle,
           stemme, eventuelt bilete og video, og korrespondansen med deg. Me
           førebur samtalen ut frå det du og organisasjonen din har gjort
-          offentleg. Grunnlaget er avtalen med deg om å vere med, og du
-          godkjenner episoden før den blir publisert. Godkjenninga gjer du i
-          Lytterommet eller på e-post, og me tek vare på den saman med
-          episoden. Publiserte episodar ligg
+          offentleg. Det byggjer på vår berettiga interesse i å førebu gode
+          samtalar (artikkel 6 nr. 1 bokstav f).
+        </p>
+        <p>
+          Opptak og publisering byggjer på samtykket ditt (artikkel 6 nr. 1
+          bokstav a). Du samtykkjer når du godkjenner episoden i Lytterommet
+          eller på e-post, og me tek vare på godkjenninga saman med episoden.
+          Du kan trekkje samtykket tilbake når som helst ved å skrive til oss.
+          Då tek me episoden ned frå kanalane våre og ber plattformene fjerne
+          den. Kopiar som andre alt har lasta ned, kan me ikkje fjerne.
+          Publiserte episodar ligg elles
           ute så lenge podkasten finst. Råopptak og førebuinga slettar me tolv
           månader etter at episoden er publisert.
         </p>
