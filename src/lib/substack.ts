@@ -3,6 +3,7 @@ export type SubstackInnlegg = {
   lenke: string;
   dato: string | null;
   samandrag: string;
+  bilete: string | null;
 };
 
 function reinsk(s: string): string {
@@ -30,6 +31,14 @@ function kutt(s: string, maks: number): string {
   const kappa = s.slice(0, maks);
   const siste = kappa.lastIndexOf(" ");
   return `${kappa.slice(0, siste > 40 ? siste : maks).trim()}…`;
+}
+
+// Forsidebiletet til innlegget ligg i <enclosure> i feeden.
+function biletadresse(item: string): string | null {
+  const m = item.match(/<enclosure[^>]*url="([^"]+)"[^>]*>/i);
+  if (!m) return null;
+  const adresse = m[1].replace(/&amp;/g, "&");
+  return adresse.startsWith("https://") ? adresse : null;
 }
 
 /**
@@ -66,6 +75,7 @@ export async function hentSubstack(
         lenke: felt(item, "link"),
         dato: felt(item, "pubDate") || null,
         samandrag: kutt(rå ? reinsk(rå[1]) : "", 150),
+        bilete: biletadresse(item),
       };
     });
   } catch {

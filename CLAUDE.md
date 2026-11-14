@@ -14,7 +14,9 @@
 - README er standardteksten frå create-next-app. `STILGUIDE.md` er designregelverket. Les han før du endrar utsjånad.
 - **Innhald** (tekst og bilete) blir endra i Sanity, ikkje i koden. Kode berre for design, nye sider og ny funksjonalitet.
 - To merkevarer: rot `/` er KommunalSektor, `/ss` er Selseng & Systaddal med eigen palett (rotgrøn `#314D3C`, varm krem `#F6F1E8`, djup jord `#2F2B26`, terrakotta `#A65F3D` berre som handlingsaksent). Unngå rein svart og kvit på `/ss`.
-- På framsida til `/ss`: éi breidd på heile sida (`max-w-3xl`). Portrett og namn som eigne element i bolken Folka skal ikkje inn att.
+- Framsida til `/ss` er brei (`max-w-6xl`) frå november 2026. Undersidene held den smale spalta (`max-w-3xl`). Éi breidd per side. Nav og botnfelt følgjer breidda på sida dei står på.
+- Bileta på framsida (opningsbilete, landskapsbilete, portrett) ligg i fana «Bilete» på `ssHomepage` i Sanity. Alle er valfrie: står eit felt tomt, fell biletet bort og sida ordnar seg utan. Portretta i bolken Folka lenkjer til `/ss/folk`. Utan lenkje gjer dei ingen jobb.
+- Rørsla på framsida er rein CSS, slått på av `SSSynleg`. Ho er roleg med vilje, og står stille for dei som har bede om mindre rørsle. Ikkje legg til animasjonsbibliotek utan grunn.
 - `src/app/ss/layout.tsx` set eigen tittelmal (`absolute` + `template`) så fanetittelen ikkje arvar «— KommunalSektor».
 - Lenkjer internt i `/ss` går gjennom `SSLenke`, som handterer domeneomskrivinga.
 - Sanity MCP kan ikkje laste opp binære bilete. Bilete går via `/studio`.

@@ -28,7 +28,7 @@ export default function SSNav() {
   return (
     <>
       <header className="sticky top-0 z-50 px-6 sm:px-10 py-6 bg-[#F6F1E8]/85 backdrop-blur-md">
-        <div className="max-w-3xl mx-auto flex items-center justify-between">
+        <div className={`${pathname === "/ss" ? "max-w-6xl" : "max-w-3xl"} mx-auto flex items-center justify-between`}>
           <Link
             href={ssHref("/ss")}
             className="flex items-center gap-2.5 text-sm font-medium tracking-tight text-[#314D3C] hover:text-[#28402F] transition-colors"

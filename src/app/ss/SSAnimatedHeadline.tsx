@@ -8,12 +8,15 @@ type Props = {
   venstre?: string;
   verb?: string;
   hogre?: string;
+  /** Venstrestilt, til opninga der overskrifta står ved sida av eit bilete */
+  venstrestilt?: boolean;
 };
 
 export default function SSAnimatedHeadline({
   venstre = "folk",
   verb = "formar",
   hogre = "system",
+  venstrestilt = false,
 }: Props) {
   const [swapped, setSwapped] = useState(false);
 
@@ -32,7 +35,7 @@ export default function SSAnimatedHeadline({
   const rightText = swapped ? venstre : hogre;
 
   return (
-    <h1 className="ssh">
+    <h1 className={venstrestilt ? "ssh ssh--venstre" : "ssh"}>
       <Word key={`left-${swapped}`} text={leftText} dir={1} />
       <span className="ssh__mid">{verb}</span>
       <Word key={`right-${swapped}`} text={rightText} dir={-1} />
