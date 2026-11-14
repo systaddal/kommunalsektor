@@ -19,7 +19,7 @@ export default function SSPageEnd() {
   return (
     <>
       {!utanNavKort && <SSNavCards />}
-      <SSFooter />
+      <SSFooter brei={pathname === "/ss"} />
     </>
   );
 }

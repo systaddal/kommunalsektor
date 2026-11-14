@@ -7,11 +7,12 @@ import { useSSHref } from "./useSSHref";
 const MEETINGS_SRC =
   "https://meetings-eu1.hubspot.com/joakim-systaddal?embed=true";
 
-export default function SSFooter() {
+// «brei» følgjer breidda på framsida. Undersidene held den smale spalta.
+export default function SSFooter({ brei = false }: { brei?: boolean }) {
   const ssHref = useSSHref();
   return (
     <footer id="kontakt" className="px-6 sm:px-10 mt-10 sm:mt-14">
-      <div className="max-w-3xl mx-auto rounded-2xl bg-[#314D3C] px-8 sm:px-12 py-8 sm:py-10">
+      <div className={`${brei ? "max-w-6xl" : "max-w-3xl"} mx-auto rounded-2xl bg-[#314D3C] px-8 sm:px-12 py-8 sm:py-10`}>
         <h2 className="text-lg font-medium text-[#F6F1E8] tracking-tight mb-2">
           Interessert?
         </h2>

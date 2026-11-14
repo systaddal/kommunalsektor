@@ -221,3 +221,142 @@ body {
 .ss-kryss__hogre { grid-area: hogre; }
 .ss-kryss__botn { grid-area: botn; }
 .ss-kryss__kjerne { grid-area: kjerne; }
+
+/* ── SS framside: roleg rørsle ─────────────────────────────── */
+.ss-inn {
+  transition:
+    opacity 700ms ease,
+    transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.ss-inn[data-ss-inn="skjult"] {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+/* Venstrestilt variant av den animerte overskrifta, til opninga med bilete */
+.ssh--venstre {
+  justify-content: flex-start;
+  text-align: left;
+  font-size: clamp(2.1rem, 4.3vw, 3.4rem);
+}
+
+/* ── SS framside: modellen ─────────────────────────────────── */
+.ss-modell {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-areas:
+    ".       topp   ."
+    "venstre kjerne hogre"
+    ".       botn   .";
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 26rem;
+  margin-inline: auto;
+}
+
+/* Modellen sjølv skal ikkje gli: det er delane som rører seg */
+.ss-modell.ss-inn[data-ss-inn="skjult"] {
+  opacity: 1;
+  transform: none;
+}
+
+.ss-modell__del,
+.ss-modell__kjerne {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.5rem;
+  font-size: clamp(0.7rem, 2.6vw, 0.875rem);
+  line-height: 1.25;
+  font-weight: 500;
+  hyphens: auto;
+  overflow-wrap: anywhere;
+  transition:
+    opacity 800ms ease,
+    transform 900ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    background-color 200ms ease;
+}
+
+.ss-modell__del {
+  border-radius: 1.125rem;
+}
+
+.ss-modell__del--topp { grid-area: topp; }
+.ss-modell__del--venstre { grid-area: venstre; }
+.ss-modell__del--hogre { grid-area: hogre; }
+.ss-modell__del--botn { grid-area: botn; }
+
+.ss-modell__del--topp,
+.ss-modell__del--botn {
+  background: #314D3C;
+  color: #F6F1E8;
+}
+
+.ss-modell__del--venstre,
+.ss-modell__del--hogre {
+  background: #DDD1BE;
+  color: #2F2B26;
+}
+
+.ss-modell__del--topp:hover,
+.ss-modell__del--botn:hover {
+  background: #28402F;
+}
+
+.ss-modell__del--venstre:hover,
+.ss-modell__del--hogre:hover {
+  background: #D2C4AD;
+}
+
+.ss-modell__del:focus-visible {
+  outline: 2px solid #A65F3D;
+  outline-offset: 3px;
+}
+
+.ss-modell__kjerne {
+  grid-area: kjerne;
+  border-radius: 9999px;
+  background: #A65F3D;
+  color: #FAF8F3;
+  font-family: var(--font-serif-ss), "Source Serif 4", Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(0.85rem, 3vw, 1.0625rem);
+}
+
+.ss-modell[data-ss-inn="skjult"] .ss-modell__del,
+.ss-modell[data-ss-inn="skjult"] .ss-modell__kjerne {
+  opacity: 0;
+}
+
+.ss-modell[data-ss-inn="skjult"] .ss-modell__kjerne { transform: scale(0.85); }
+.ss-modell[data-ss-inn="skjult"] .ss-modell__del--topp { transform: translateY(-2rem); }
+.ss-modell[data-ss-inn="skjult"] .ss-modell__del--botn { transform: translateY(2rem); }
+.ss-modell[data-ss-inn="skjult"] .ss-modell__del--venstre { transform: translateX(-2rem); }
+.ss-modell[data-ss-inn="skjult"] .ss-modell__del--hogre { transform: translateX(2rem); }
+
+.ss-modell__del--topp { transition-delay: 150ms, 150ms, 0ms; }
+.ss-modell__del--hogre { transition-delay: 300ms, 300ms, 0ms; }
+.ss-modell__del--botn { transition-delay: 450ms, 450ms, 0ms; }
+.ss-modell__del--venstre { transition-delay: 600ms, 600ms, 0ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ss-inn,
+  .ss-modell__del,
+  .ss-modell__kjerne {
+    transition: none;
+  }
+}
+
+/* ── SS framside: overskrifter ─────────────────────────────── */
+.ss-h2 {
+  font-family: var(--font-serif-ss), "Source Serif 4", Georgia, serif;
+  font-weight: 600;
+  color: #314D3C;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  font-size: clamp(1.75rem, 3.6vw, 2.5rem);
+  text-wrap: balance;
+}

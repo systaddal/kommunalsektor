@@ -3,6 +3,7 @@ import { ssRichBlock } from "./ssRichBlock";
 
 // Framsida til selsengsystaddal.no. Tre bolkar:
 // 1) Kva me jobbar med + effektane + kontakt, 2) Substack, 3) Folka.
+// Bileta til sida ligg i fana «Bilete».
 // Den gamle brødteksten ligg i dokumenttypen «Arkiv».
 export default defineType({
   name: "ssHomepage",
@@ -13,6 +14,7 @@ export default defineType({
     { name: "bolk1", title: "1 · Utviklingskapasitet" },
     { name: "bolk2", title: "2 · Substack" },
     { name: "bolk3", title: "3 · Folka" },
+    { name: "bilete", title: "Bilete" },
     { name: "arkiv", title: "Arkiv" },
   ],
   fields: [
@@ -200,6 +202,61 @@ export default defineType({
       type: "string",
       group: "bolk3",
       initialValue: "Meir om folka",
+    }),
+
+    // ── Bilete ──────────────────────────────────────────────
+    // Alle bileta er valfrie. Står eit felt tomt, fell biletet bort og
+    // sida ordnar seg utan.
+    defineField({
+      name: "opningsbilete",
+      title: "Opningsbilete",
+      type: "image",
+      group: "bilete",
+      options: { hotspot: true },
+      description:
+        "Står til høgre for overskrifta øvst. Ståande eller kvadratisk utsnitt fungerer best. Bruk fokuspunktet til å styre utsnittet.",
+      fields: [
+        {
+          name: "alt",
+          title: "Skildring av biletet",
+          type: "string",
+          description: "For dei som ikkje ser biletet. Éi kort setning.",
+        },
+      ],
+    }),
+    defineField({
+      name: "landskapsbilete",
+      title: "Landskapsbilete",
+      type: "image",
+      group: "bilete",
+      options: { hotspot: true },
+      description: "Breitt band tvers over sida, mellom modellen og artiklane.",
+      fields: [
+        { name: "alt", title: "Skildring av biletet", type: "string" },
+      ],
+    }),
+    defineField({
+      name: "landskapTekst",
+      title: "Tekst oppå landskapsbiletet",
+      type: "string",
+      group: "bilete",
+      description: "Éi kort setning. Står feltet tomt, står biletet åleine.",
+    }),
+    defineField({
+      name: "portrett",
+      title: "Portrett i bolken Folka",
+      type: "array",
+      group: "bilete",
+      description:
+        "Eitt bilete per person, i den rekkjefølgja dei skal stå. Bileta lenkjer til sida om folka.",
+      validation: (r) => r.max(2),
+      of: [
+        {
+          type: "image",
+          options: { hotspot: true },
+          fields: [{ name: "namn", title: "Namn", type: "string" }],
+        },
+      ],
     }),
 
     // ── Arkiv ───────────────────────────────────────────────
