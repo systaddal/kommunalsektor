@@ -17,6 +17,8 @@
 - Framsida til `/ss` er brei (`max-w-6xl`) frå november 2026. Undersidene held den smale spalta (`max-w-3xl`). Éi breidd per side. Nav og botnfelt følgjer breidda på sida dei står på.
 - Bileta på framsida (opningsbilete, landskapsbilete, portrett) ligg i fana «Bilete» på `ssHomepage` i Sanity. Alle er valfrie: står eit felt tomt, fell biletet bort og sida ordnar seg utan. Portretta i bolken Folka lenkjer til `/ss/folk`. Utan lenkje gjer dei ingen jobb.
 - Rørsla på framsida er rein CSS, slått på av `SSSynleg`. Ho er roleg med vilje, og står stille for dei som har bede om mindre rørsle. Ikkje legg til animasjonsbibliotek utan grunn.
+- Framsida til kommunalsektor.no (`src/app/page.tsx`) er redaksjonell frå november 2026: siste sak står i opninga og skifter ved kvar publisering, dei fem neste står i avisoppsett, og podkasten viser dei fire siste episodane på mørk grøn flate med éin felles avspelar (`PodcastSpelar`). Alle episodane ligg på `/podcast`.
+- Podkastfeeden har berre omslaget til podkasten, ikkje bilete per episode. Datoar til klientkomponentar blir skrivne på serveren, fordi ikkje alle nettlesarar kan nynorske månadsnamn.
 - `src/app/ss/layout.tsx` set eigen tittelmal (`absolute` + `template`) så fanetittelen ikkje arvar «— KommunalSektor».
 - Lenkjer internt i `/ss` går gjennom `SSLenke`, som handterer domeneomskrivinga.
 - Sanity MCP kan ikkje laste opp binære bilete. Bilete går via `/studio`.

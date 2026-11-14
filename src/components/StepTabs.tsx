@@ -18,27 +18,55 @@ export default function StepTabs({ steps }: { steps: Step[] }) {
 
   return (
     <div>
-      {/* Tab bar */}
-      <div className="flex justify-center mb-10">
-        <div className="inline-flex bg-[#FAF7EF] border border-[rgba(28,28,26,0.09)] rounded-full p-1.5 gap-1 flex-wrap justify-center">
-          {steps.map((s, i) => (
+      {/* Stega som ein veg: nummer på rekkje, med piler mellom */}
+      <ol className="mb-10 flex flex-wrap items-start justify-center gap-x-1 gap-y-5 sm:justify-between">
+        {steps.map((s, i) => (
+          <li key={s.num} className="flex items-start">
             <button
-              key={s.num}
+              type="button"
               onClick={() => setActive(i)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                active === i
-                  ? "bg-[#2D4233] text-white"
-                  : "text-[#43565A] hover:text-[#18251D] hover:bg-[#FAF7EF]"
-              }`}
+              aria-current={active === i ? "step" : undefined}
+              className="group flex w-[88px] flex-col items-center gap-2.5 cursor-pointer sm:w-[112px]"
             >
-              <span className="hidden sm:inline">{s.label}</span>
-              <span className="sm:hidden">
-                {s.num === "X" ? "X" : s.num}
+              <span
+                className={`flex h-[52px] w-[52px] items-center justify-center rounded-full border-[1.5px] text-[22px] transition-colors ${
+                  active === i
+                    ? "border-[#2D4233] bg-[#2D4233] text-[#F5F1E8]"
+                    : "border-[#D8D2C4] bg-[#FAF7EF] text-[#2D4233] group-hover:border-[#2D4233]"
+                }`}
+                style={{ fontFamily: "var(--font-serif), 'Fraunces', serif" }}
+              >
+                {s.num}
+              </span>
+              <span
+                className={`text-center text-sm leading-tight ${
+                  active === i
+                    ? "font-semibold text-[#18251D]"
+                    : "font-medium text-[#43565A] group-hover:text-[#18251D]"
+                }`}
+              >
+                {s.label}
               </span>
             </button>
-          ))}
-        </div>
-      </div>
+            {i < steps.length - 1 && (
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#C7653A"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+                className="mt-4 hidden flex-shrink-0 md:block"
+              >
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            )}
+          </li>
+        ))}
+      </ol>
 
       {/* Content area */}
       <div className="bg-[#FAF7EF] border border-[rgba(28,28,26,0.09)] rounded-2xl p-6 sm:p-10 min-h-[400px]">
