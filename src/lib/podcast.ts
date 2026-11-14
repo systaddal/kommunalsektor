@@ -175,3 +175,22 @@ export async function getEpisodes(limit?: number): Promise<Episode[]> {
     return [];
   }
 }
+
+/**
+ * Omslaget til podkasten, frå <itunes:image> i kanaldelen av feeden.
+ * Feeden har ikkje eigne bilete per episode, så dette er det eine biletet me har.
+ * Feilar mjukt: utan svar får me null, og flata står utan omslag.
+ */
+export async function getPodcastCover(): Promise<string | null> {
+  try {
+    const res = await fetch(PODCAST_RSS_URL, { next: { revalidate: 3600 } });
+    if (!res.ok) return null;
+    const xml = await res.text();
+    const kanal = xml.split(/<item[\s>]/i)[0];
+    const m = kanal.match(/<itunes:image\b[^>]*>/i);
+    const url = m ? attr(m[0], "href") : null;
+    return url && url.startsWith("https://") ? url : null;
+  } catch {
+    return null;
+  }
+}
